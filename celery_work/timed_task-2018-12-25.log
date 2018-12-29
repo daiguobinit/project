@@ -1,0 +1,14 @@
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-26 01:02:03+08:00 (in 27085.605203 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[day='26', hour='1', minute='2', second='3'], next run at: 2018-12-26 01:02:03 CST)" (scheduled at 2018-12-26 01:02:03+08:00)
+Running job "zhihu (trigger: cron[day='26', hour='1', minute='2', second='3'], next run at: 2018-12-26 01:02:03 CST)" (scheduled at 2018-12-26 01:02:03+08:00)
+Next wakeup is due at 2019-01-26 01:02:03+08:00 (in 2678399.998995 seconds)
+Job "hupu (trigger: cron[day='26', hour='1', minute='2', second='3'], next run at: 2019-01-26 01:02:03 CST)" executed successfully
+Job "zhihu (trigger: cron[day='26', hour='1', minute='2', second='3'], next run at: 2019-01-26 01:02:03 CST)" executed successfully

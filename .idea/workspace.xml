@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6f1bc62d-74d9-4002-9bf4-27edd2d55e35" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/celery_work/task.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="84" column="51" lean-forward="true" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <marker date="1546047619150" expanded="true" signature="1418:1697" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chance/spiders/ifeng.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+              <folding>
+                <element signature="e#24#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chance/zimeiti.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yidianzixun/yidianzixun.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2350">
+              <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tencent/newcarts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1725">
+              <caret line="79" column="65" selection-start-line="79" selection-start-column="65" selection-end-line="79" selection-end-column="65" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zhihu/zhihu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="800">
+              <caret line="43" selection-start-line="43" selection-end-line="55" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1545982613975" expanded="true" signature="13119:15752" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hupu/hupu.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="800">
+              <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="Setup Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>李奥纳多达芬奇</find>
+      <find>椰香天堂(</find>
+      <find>http://www.dianping.com/shop/504795</find>
+      <find>NICOLSONS牛排店</find>
+      <find>http://www.dianping.com/shop/9945960</find>
+      <find>[]</find>
+      <find>康铂餐厅</find>
+      <find>http://www.dianping.com/shop/8008401</find>
+      <find>http://www.dianping.com/shop/4298506</find>
+      <find>http://www.dianping.com/shop/19416750</find>
+      <find>http://www.dianping.com/shop/100939480</find>
+      <find>ip被封</find>
+      <find>http://www.dianping.com/shop/10647635</find>
+      <find>hbdyfq</find>
+      <find>103656388</find>
+      <find>44230093</find>
+      <find>get_serach_page</find>
+      <find>self.news_jsonfile</find>
+      <find>6638953907018007043</find>
+      <find>6638782845949051396</find>
+      <find>6639124209832296974</find>
+      <find>6638921870265549320</find>
+      <find>6637628459763892739</find>
+      <find>6638193563899265544</find>
+      <find>tool_list</find>
+      <find>itemid</find>
+      <find>在家怎么清洗汽车发动机</find>
+      <find>汽车</find>
+      <find>channel_id</find>
+      <find>error_url_list</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>,</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/mop/mop_json_file.json" />
+        <option value="$PROJECT_DIR$/sina/newcarts.py" />
+        <option value="$PROJECT_DIR$/mop/mop_spider.py" />
+        <option value="$PROJECT_DIR$/jiemian/jiemian_spider.py" />
+        <option value="$PROJECT_DIR$/zhihu/zhihu_newsfile.json" />
+        <option value="$PROJECT_DIR$/zhihu/zhihu-2018-12-18.log" />
+        <option value="$PROJECT_DIR$/time_change" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dazhongdianping.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dazhongdianping/settings.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dazhongdianping/spiders/dianping.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/css_name.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/css_name_two" />
+        <option value="$PROJECT_DIR$/dazhongdianping/item.json" />
+        <option value="$PROJECT_DIR$/dazhongdianping/ceshi.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/1.html" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping.json" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping_sele.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/url_shop_father.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/url_shop_history.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping_two.json" />
+        <option value="$PROJECT_DIR$/ceshi.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/modify_response.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping_sele_comment.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/ce.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/111.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/url_shop.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping_commentfile.json" />
+        <option value="$PROJECT_DIR$/hupu/hupu_newsfile.json" />
+        <option value="$PROJECT_DIR$/ippro/proxies.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/css_pojie.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/url_shop_father_two.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/url_shop_two.txt" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping.py" />
+        <option value="$PROJECT_DIR$/dazhongdianping/dianping-2018-12-26.log" />
+        <option value="$PROJECT_DIR$/wangyi/wangyi_news_jsonfile.json" />
+        <option value="$PROJECT_DIR$/wangyi/wangyi_comments_jsonfile.json" />
+        <option value="$PROJECT_DIR$/toutiao/toutiao_newsfile.json" />
+        <option value="$PROJECT_DIR$/toutiao/toutiao_commentfile.json" />
+        <option value="$PROJECT_DIR$/toutiao/toutiao_sele.py" />
+        <option value="$PROJECT_DIR$/toutiao/toutiao.py" />
+        <option value="$PROJECT_DIR$/toutiao/new_url_file.json" />
+        <option value="$PROJECT_DIR$/chance/pipelines.py" />
+        <option value="$PROJECT_DIR$/chance/ifeng_2018-12-26.json" />
+        <option value="$PROJECT_DIR$/zhihu/zhihu.py" />
+        <option value="$PROJECT_DIR$/hupu/hupu.py" />
+        <option value="$PROJECT_DIR$/wangyi/newcarts.py" />
+        <option value="$PROJECT_DIR$/tencent/newcarts.py" />
+        <option value="$PROJECT_DIR$/yidianzixun/yidianzixun.py" />
+        <option value="$PROJECT_DIR$/chance/spiders/ifeng.py" />
+        <option value="$PROJECT_DIR$/chance/zimeiti.py" />
+        <option value="$PROJECT_DIR$/celery_work/task.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="566" />
+    <option name="y" value="82" />
+    <option name="width" value="795" />
+    <option name="height" value="601" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chance" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chance" type="462c0819:PsiDirectoryNode" />
+              <item name="celery_work" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chance" type="462c0819:PsiDirectoryNode" />
+              <item name="hupu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chance" type="462c0819:PsiDirectoryNode" />
+              <item name="yidianzixun" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chance" type="462c0819:PsiDirectoryNode" />
+              <item name="zhihu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chance" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../work" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\chance\dazhongdianping" />
+      <recent name="E:\chance\xiaohongshu" />
+      <recent name="E:\chance\celery_work" />
+      <recent name="E:\chance\zhihu" />
+      <recent name="E:\chance\toutiao" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\chance\chance" />
+      <recent name="E:\chance\wangyi" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.zhihu">
+    <configuration name="newcarts" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="chance" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tencent" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tencent/newcarts.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="task" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="chance" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/celery_work" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/celery_work/task.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="yidianzixun" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="chance" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/yidianzixun" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/yidianzixun/yidianzixun.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zhihu" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="chance" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/zhihu" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zhihu/zhihu.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="zimeiti" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="chance" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/chance" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/chance/zimeiti.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.newcarts" />
+      <item itemvalue="Python.task" />
+      <item itemvalue="Python.yidianzixun" />
+      <item itemvalue="Python.zhihu" />
+      <item itemvalue="Python.zimeiti" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.zhihu" />
+        <item itemvalue="Python.task" />
+        <item itemvalue="Python.newcarts" />
+        <item itemvalue="Python.yidianzixun" />
+        <item itemvalue="Python.zimeiti" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6f1bc62d-74d9-4002-9bf4-27edd2d55e35" name="Default Changelist" comment="" />
+      <created>1541383170247</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1541383170247</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49876544" visible="true" weight="0.23091602" />
+      <window_info id="Structure" order="1" sideWeight="0.5012346" side_tool="true" weight="0.19974555" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32962447" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49936387" weight="0.31849793" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38803893" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962447" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="DB Execution Console" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50063616" side_tool="true" weight="0.31571627" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.45618916" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49876544" visible="true" weight="0.23091602" />
+      <window_info id="Structure" order="1" sideWeight="0.5012346" side_tool="true" weight="0.19974555" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="DB Browser" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32962447" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49936387" visible="true" weight="0.31849793" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.38803893" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32962447" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="DB Execution Console" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50063616" side_tool="true" weight="0.31571627" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.45618916" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/tencent/cheshi.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/url_shop.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="2872" selection-start-line="2872" selection-end-line="2872" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/url_shop_history.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="2862" selection-start-line="2862" selection-end-line="2862" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/dianping_commentfile_two.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68436">
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/url_shop_father.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="218" selection-start-line="218" selection-end-line="218" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/url_shop_father_two.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-508" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/css_pojie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="159" column="25" selection-start-line="159" selection-start-column="25" selection-end-line="159" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/url_shop_two.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35140" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/dianping-2018-12-26.log" />
+    <entry file="file://$PROJECT_DIR$/muban.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wangyi/wangyi-2018-12-26.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wangyi/wangyi_comments_jsonfile.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wangyi/wangyi_news_jsonfile.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/old_url_list.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao_commentfile.json" />
+    <entry file="file://$PROJECT_DIR$/dazhongdianping/dianping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="135" selection-start-line="135" selection-end-line="141" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao_newsfile.json" />
+    <entry file="file://$PROJECT_DIR$/xiaohongshu/xiaohongshu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3900" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hupu/hupu-2018-12-14.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu-2018-12-27.log" />
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu_newsfile.json" />
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao_commentfile_2018-12-26.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao_newsfile_2018-12-26.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4230" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7425">
+          <caret line="297" column="28" selection-start-line="297" selection-start-column="28" selection-end-line="297" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xiaohongshu/xiaohongshu_selenium.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/new_url_file.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/all.log">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-1950" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/toutiao/toutiao_sele.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="60" column="28" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/ifeng_2018-12-26.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/items.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="16" column="79" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/yikou.txt" />
+    <entry file="file://$PROJECT_DIR$/yidianzixun/yidian_newsfile_2018-12-27.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-638">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tencent/tencent_newsfile_2018-12-27.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2147">
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tencent/tencent_commentfile_2018-12-27.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14772" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hupu/hupu_newsfile.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu_newsfile_12-24.json" />
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu-2018-12-28.log" />
+    <entry file="file://$PROJECT_DIR$/wangyi/newcarts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/ifeng_2018-12-27.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hupu/hupu_newsfile_2018-12-27.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-104451">
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wangyi/wangyi-2018-12-28.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-75950" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu_newsfile_2018-12-27.json">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="-30884" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/celery_work/timed_task-2018-12-28.log" />
+    <entry file="file://$PROJECT_DIR$/hupu/hupu-2018-12-28.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11170">
+          <caret line="27" column="46" lean-forward="true" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/celery_work/task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="84" column="51" lean-forward="true" selection-start-line="84" selection-start-column="51" selection-end-line="84" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1546047619150" expanded="true" signature="1418:1697" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/spiders/ifeng.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="11" column="41" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
+          <folding>
+            <element signature="e#24#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chance/zimeiti.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yidianzixun/yidianzixun.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2350">
+          <caret line="105" column="64" selection-start-line="105" selection-start-column="64" selection-end-line="105" selection-end-column="64" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tencent/newcarts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1725">
+          <caret line="79" column="65" selection-start-line="79" selection-start-column="65" selection-end-line="79" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zhihu/zhihu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="43" selection-start-line="43" selection-end-line="55" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1545982613975" expanded="true" signature="13119:15752" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hupu/hupu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
