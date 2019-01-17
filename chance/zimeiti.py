@@ -9,6 +9,7 @@ from datetime import timedelta
 
 import random
 # 自定义爬取结束时间2018-10-30
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 date = datetime.now() - timedelta(days=3)
 news_start_time = str(date).split(' ')[0]
 yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
@@ -143,7 +144,7 @@ for url in url_list:
             jishu += 1
             # filename.write(text.encode('utf-8'))
 
-            with open('./../chance/ifeng_{}.json'.format(str(yesterday)), 'wb') as f:
+            with open('./../chance/25_{}_ifeng.json'.format(str(now_time)), 'ab') as f:
                 f.write(text.encode('utf-8'))
     except:
         print('爬取数据失败', url)

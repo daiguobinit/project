@@ -5,6 +5,24 @@ import re
 import math
 import time
 import ast
+from datetime import datetime
+from datetime import timedelta
+import logging
+import traceback
+
+# 设置日志记录
+LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S '   # 配置输出时间的格式，注意月份和天数不要搞乱了
+file_name = r"./../tencent/tencent-{}.log".format(str(datetime.now()).split(' ')[0])
+logging.basicConfig(level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    datefmt=DATE_FORMAT,
+                    filename=file_name,   # 有了filename参数就不会直接输出显示到控制台，而是直接写入文件
+                    )
+headle = logging.FileHandler(filename=file_name, encoding='utf-8')
+logger = logging.getLogger()
+logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 # 新车模块爬虫
@@ -16,7 +34,7 @@ class NewCartsSpider(object):
             'Accept-Encoding':'gzip, deflate, sdch',
             'Accept-Language':'zh-CN,zh;q=0.8',
             'Cache-Control':'max-age=0',
-            'Connection':'keep-alive',
+            'Connection':'close',
             'Host':'auto.qq.com',
             'Upgrade-Insecure-Requests':'1',
             'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
@@ -27,7 +45,7 @@ class NewCartsSpider(object):
             'Accept-Encoding':'gzip, deflate, sdch',
             'Accept-Language':'zh-CN,zh;q=0.8',
             'Cache-Control':'max-age=0',
-            'Connection':'keep-alive',
+            'Connection':'close',
             'Host':'coral.qq.com',
             'Referer':'http://page.coral.qq.com/coralpage/comment/news.html',
             'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
@@ -49,10 +67,7 @@ class NewCartsSpider(object):
         self.newcart_port_url = 'http://coral.qq.com/article/3119727602/comment/v2?callback=_article3119727602commentv2&orinum=10&oriorder=o&pageflag=1&cursor=6448911923942977637&scorecursor=0&orirepnum=2&reporder=o&reppageflag=1&source=1&_=1542093441225'
         self.some_url_list = []
         self.some_url_list_two = []
-        # 打开json文件
-        self.news_jsonfile = open('./tencent_news.json', 'wb')
 
-        self.comment_jsonfile = open('./tencent_comment.json', 'wb')
         # 评论数据接口url模板
         self.comment_port = 'http://coral.qq.com/article/{}/comment/v2?callback=_article{}commentv2&orinum=10&oriorder=o&pageflag=1&cursor={}&scorecursor=0&orirepnum=2&reporder=o&reppageflag=1&source=1&_=1542161324292'
         # 标记评论数量的id
@@ -62,18 +77,28 @@ class NewCartsSpider(object):
 
         # 标记重复的url
         self.all_url_list = []
-        # 定义开始时间 y-m-d
-        self.start_time = '2018-11-10'
-        # 定义结束时间 y-m-d
-        self.end_time = '2018-11-13'
+        # 通过系统时间自动计算时间间隔
+        date = datetime.now() - timedelta(days=3)  # 七天前的时间，不包括今天
+        str_time = str(date).split(' ')[0]
+
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+
+        now_time = str(yesterday).split(' ')[0]
+        print('爬取时间段：{}到{}'.format(str_time, now_time))
+
+        logging.info('爬取时间段：{}到{}'.format(str_time, now_time))
+        # 定义开始时间 y-m-d  离现在时间远
+        self.start_time = str_time
+        # 定义结束时间 y-m-d  离现在时间近
+        self.end_time = now_time
         # 爬虫工作
         self.is_work = True
 
 
 
     # 新车模块的起始页面的数据
-    def get_first_page(self):
-        response = requests.get(self.start_url)
+    def get_first_page(self, url):
+        response = requests.get(url)
         data = etree.HTML(response.content)
         news_list = data.xpath('//*[@id="LIST_LM"]/li')
         for news in news_list:
@@ -233,7 +258,7 @@ class NewCartsSpider(object):
                     item['likes'] = likes
                     # 原文发布日期时间
                     item['source_date'] = source_date
-                    item['cource_time'] = cource_time
+                    item['source_time'] = cource_time
                     # 原文标题
                     item['title'] = source_title
                     # 原文url
@@ -320,22 +345,30 @@ class NewCartsSpider(object):
             self.get_comment_reply(url, get_comment_id, comment_id, source_url, source_date, cource_time, source_title,)
 
     def write_news_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.news_jsonfile.write(item.encode("utf-8"))
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../tencent/18_{}_tencent_news.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.comment_jsonfile.write(item.encode("utf-8"))
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../tencent/32_{}_tencent_commnet.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
-
-    def close_file(self):
-        self.news_jsonfile.close()
-        self.comment_jsonfile.close()
 
     def run(self):
         # 新车模块
-        self.get_first_page()
+        url_list = ['http://auto.qq.com/newcar.htm',
+        'http://auto.qq.com/guide.htm',
+        'http://auto.qq.com/evaluat.htm',
+        'http://auto.qq.com/tech.htm',
+        'http://auto.qq.com/news.htm'
+                    ]
+        for url in url_list:
+            print(url)
+            self.is_work = True
+            self.get_first_page(url)
         # self.get_news_from_port()
+        logger.info('爬取完毕......')
 
 
 if __name__ == "__main__":

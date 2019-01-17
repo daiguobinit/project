@@ -8,6 +8,26 @@ import ast
 import random
 from as_cp import get_as_cp
 from xml.sax.saxutils import unescape
+# from ippro.proxies import res_ip
+import proxies
+from datetime import datetime
+from datetime import timedelta
+import logging
+import traceback
+
+# 设置日志记录
+LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S '   # 配置输出时间的格式，注意月份和天数不要搞乱了
+file_name = r"./../toutiao/toutiao-{}.log".format(str(datetime.now()).split(' ')[0])
+logging.basicConfig(level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    datefmt=DATE_FORMAT,
+                    filename=file_name,   # 有了filename参数就不会直接输出显示到控制台，而是直接写入文件
+                    )
+headle = logging.FileHandler(filename=file_name, encoding='utf-8')
+logger = logging.getLogger()
+logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 class TouTiaoSpider(object):
@@ -36,13 +56,24 @@ class TouTiaoSpider(object):
         self.start_url = 'https://www.toutiao.com/api/pc/feed/'
         # 评论接口模板
         self.commnet_port_url = ''
-        # 打开json文件
-        self.news_jsonfile = open('./toutiao_newsfile.json', 'wb')
-        self.comment_jsonfile = open('./toutiao_commentfile.json', 'wb')
+
+        date = datetime.now() - timedelta(days=3)
+        news_start_time = str(date).split(' ')[0]
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+        yesterday = str(yesterday).split(' ')[0]
+        print('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+        logging.info('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+        # 定义开始时间 y-m-d  离现在时间远
+        news_start_time = news_start_time
+        # 定义结束时间 y-m-d  离现在时间近
+        new_end_time = yesterday
+
         # 定义开始时间 y-m-d
-        self.start_time = '2018-11-13'
+        self.start_time = news_start_time
         # 定义结束时间 y-m-d
-        self.end_time = '2018-11-20'
+        self.end_time = new_end_time
+
         # 标记爬虫工作
         self.is_work = True
         # 评论页数
@@ -51,14 +82,21 @@ class TouTiaoSpider(object):
         self.set_list = []
         # 代理ip
         self.proxies = [
-           '58.218.92.128:18211'
+            '112.245.235.249:4243',
+            # '59.53.47.4:4249'
         ]
         # 搜集问答类网页的列表
         self.questions_list = []
 
         # 读取url列表
-        with open('./new_url_file.json', 'r') as f:
+        with open('./../toutiao/new_url_file.json', 'r') as f:
             self.url_list = f.readlines()
+
+        # 获取ip
+        self.ip = proxies.res_ip()
+
+        # ip计数
+        self.ip_count = 0
 
     # # 从接口获取数据
     # def get_news_list_port(self, url, ip, next=0):
@@ -86,11 +124,27 @@ class TouTiaoSpider(object):
     #     time.sleep(3)
     #     self.get_news_list_port(url, ip, next=next_id)
 
-    def get_news_page(self, url):
+    def get_news_page(self, url, ip):
+        user_agent = [
+            'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+        ]
+        headers_one = {
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'zh-CN,zh;q=0.9',
+            'cache-control': 'max-age=0',
+            'upgrade-insecure-requests': '1',
+            'user-agent': '{}'.format(random.choice(user_agent))
+        }
+
         item = {}
-        ip = random.choice(self.proxies)
+        # ip = random.choice(self.proxies)
         print(ip)
-        response = requests.get(url, headers=self.headers_one, proxies={'https': ip})
+        response = requests.get(url, headers=headers_one, proxies={'https': ip}, timeout=20)  #, proxies={'https': ip}
         stutus_code = response.status_code
         if str(stutus_code) == '200':
             data_all = response.content.decode()
@@ -116,26 +170,35 @@ class TouTiaoSpider(object):
                 item['source_author'] = source
                 item['url'] = url
                 item['content'] = text_con
-                item['comment_count'] = comment_count
+                item['comments_count'] = comment_count
                 item['clicks'] = ''
+                item['views'] = ''
                 item['likes'] = ''
                 item['keyword'] = ''
-                print(item)
 
-                # # 做时间判断部分---------------
-                # get_news_time = time.mktime(time.strptime(date, "%Y-%m-%d"))
-                # end_time = time.mktime(time.strptime(self.end_time, "%Y-%m-%d"))
-                # if self.start_time != '':
-                #     start_time = time.mktime(time.strptime(self.start_time, "%Y-%m-%d"))
-                # else:
-                #     start_time = time.mktime(time.strptime('2010-1-1', "%Y-%m-%d"))
+
+                # 做时间判断部分---------------
+                get_news_time = time.mktime(time.strptime(date, "%Y-%m-%d"))
+                end_time = time.mktime(time.strptime(self.end_time, "%Y-%m-%d"))
+                if self.start_time != '':
+                    start_time = time.mktime(time.strptime(self.start_time, "%Y-%m-%d"))
+                else:
+                    start_time = time.mktime(time.strptime('2010-1-1', "%Y-%m-%d"))
                 # if float(get_news_time) < float(start_time):
-                #     self.is_work = False
-                #     return
-                #
-                # if float(start_time) <= float(get_news_time) <= float(end_time):
-                self.write_news_jsonfile(item)
-                self.get_comment_info(url, title, date, create_time)
+                #     # self.is_work = False
+                #     # return
+                #     pass
+
+                if float(start_time) <= float(get_news_time) <= float(end_time):  # 符合时间段的内容
+                    print(item)
+                    self.write_news_jsonfile(item)
+                    self.get_comment_info(url, title, date, create_time, ip)
+                else:
+                    print(item)
+                    print('不符合抓取时间段的文章 URL:{}'.format(url))
+                if float(get_news_time) > float(end_time):
+                    with open('{}_url.txt'.format(now_time), 'a') as f:
+                        f.write(url + '\n')
             except AttributeError:
                 print('问答类网页', url)
                 self.questions_list.append(url)
@@ -146,89 +209,131 @@ class TouTiaoSpider(object):
 
     # 获取评论
     # http://lf.snssdk.com/article/v1/tab_comments/?count=50&item_id=6629460454148145678&group_id=6629460454148145678&offset=0
-    def get_comment_info(self, source_url, source_title, source_date, source_time, page_id="0"):
+    def get_comment_info(self, source_url, source_title, source_date, source_time, ip, page_id="0"):
         item = dict()
+        user_agent = [
+            'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+        ]
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'zh-CN,zh;q=0.9',
             'Cache-Control': 'max-age=0',
-            'Connection': 'keep-alive',
+            # 'Connection': 'keep-alive',
             'Host': 'lf.snssdk.com',
             'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+            'User-Agent': '{}'.format(random.choice(user_agent))
         }
 
         url_id = source_url.split('/')[-1][1:]
         comment_url = 'http://lf.snssdk.com/article/v1/tab_comments/?count=50&item_id={}&group_id={}&offset={}'.format(url_id, url_id, page_id)
         print('评论爬取中......')
         print(comment_url)
-        response = requests.get(comment_url, headers=headers)
-        datas = json.loads(response.content)
-        print(datas)
-        data_list = datas['data']
-        if data_list:
-            for comment in data_list:
-                item['platform'] = '今日头条'
-                item['source_date'] = source_date
-                item['source_time'] = source_time
+        # ip = random.choice(self.proxies)
+        try:
+            response = requests.get(comment_url, headers=headers, proxies={'https': ip})  # , proxies={'https': ip}
+            datas = json.loads(response.content)
+            print(datas)
+            data_list = datas['data']
+            if data_list:
+                for comment in data_list:
+                    item['platform'] = '今日头条'
+                    item['source_date'] = source_date
+                    item['source_time'] = source_time
 
-                content = comment['comment']['text']
-                date_all = comment['comment']['create_time']
-                # #转换成localtime
-                time_local = time.localtime(float(str(date_all)))
-                # 转换成新的时间格式(2016-05-05 20:28:54)
-                dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
-                date = dt.split(' ')[0]
-                comment_time = dt.split(' ')[1]
-                item['date'] = date
-                item['time'] = comment_time
-                item['title'] = source_title
-                author = comment['comment']['user_name']
-                item['author'] = author
-                item['content'] = content
-                item['source_url'] = source_url
-                item['url'] = comment_url
-                item['floor'] = ''
-                item['keyword'] = ''
-                print('写入评论中......')
-                self.write_comment_jsonfile(item)
-            if len(data_list) == 50:
-                page_id = int(page_id) + 50
-                print('爬取评论翻页信息.....')
-                self.get_comment_info(source_url, source_title, source_date, source_time, page_id=str(page_id))
+                    content = comment['comment']['text']
+                    date_all = comment['comment']['create_time']
+                    # #转换成localtime
+                    time_local = time.localtime(float(str(date_all)))
+                    # 转换成新的时间格式(2016-05-05 20:28:54)
+                    dt = time.strftime("%Y-%m-%d %H:%M:%S", time_local)
+                    date = dt.split(' ')[0]
+                    comment_time = dt.split(' ')[1]
+                    item['date'] = date
+                    item['time'] = comment_time
+                    item['title'] = source_title
+                    author = comment['comment']['user_name']
+                    item['author'] = author
+                    item['content'] = content
+                    item['source_url'] = source_url
+                    item['comment_url'] = comment_url
+                    item['floor'] = ''
+                    item['views'] = ''
+                    item['comments_count'] = ''
+                    item['keyword'] = ''
+                    item['likes'] = ''
+                    print('写入评论中......')
+                    self.write_comment_jsonfile(item)
+                if len(data_list) == 50:
+                    page_id = int(page_id) + 50
+                    print('爬取评论翻页信息.....')
+                    time.sleep(2)
+                    self.get_comment_info(source_url, source_title, source_date, source_time, ip, page_id=str(page_id))
+        except requests.exceptions.ConnectionError:
+            print('获取评论时发生链接错误,程序暂停100s后爬取')
+            time.sleep(100)
+            self.get_comment_info(source_url, source_title, source_date, source_time, ip, page_id=str(page_id))
+            logging.error('获取评论时发生链接错误,程序暂停100s后爬取，get_comment error:{}'.format(traceback.format_exc()))
+
 
     # 写入json文件
     def write_news_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        # self.news_jsonfile.write(item.encode("utf-8"))
-        with open('./toutiao_newsfile.json', 'ab') as f:
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../toutiao/history_toutiao_newsfile.json', 'ab') as f:  # 将新闻数据写入一个总的历史数据文件
+            f.write(item.encode("utf-8"))
+
+        with open('./../toutiao/24_{}_toutiao_news.json'.format(str(now_time)), 'ab') as f:  # 新的数据文件
             f.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        with open('./toutiao_commentfile.json', 'ab') as f:
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../toutiao/history_toutiao_commentfile.json', 'ab') as f:  # 将评论数据写入一个总的历史数据文件
             f.write(item.encode("utf-8"))
 
-    def close_file(self):
-        self.news_jsonfile.close()
-        self.comment_jsonfile.close()
+        with open('./../toutiao/38_{}_toutiao_comment.json'.format(str(now_time)), 'ab') as f:  # 新的数据文件
+            f.write(item.encode("utf-8"))
 
     def run(self):
-        for url in self.url_list:
-            url = url.strip()
-            print(url)
-            try:
-                self.get_news_page(url)
-            except requests.exceptions.ProxyError:
-                print('远程连接无响应，重试一次中.......', )
-                try:
-                    self.get_news_page(url)
-                except requests.exceptions.ProxyError:
-                    print('重试链接....远程连接无响应......')
-            time.sleep(2.5)
-        self.close_file()
 
+        for url in open('./../toutiao/new_url_file.json'):
+            if self.ip_count < 150:
+                url = url.strip()
+                print('一个爬虫正在爬取网址{}'.format(url))
+                logger.info('一个爬虫正在爬取网址{}'.format(url))
+                try:
+                    self.get_news_page(url, self.ip)
+                except requests.exceptions.ProxyError:
+                    print('远程连接无响应，重试一次中.......', )
+                    try:
+                        if self.ip_count < 150:
+                            print('更换ip中......')
+                            self.ip = proxies.res_ip()
+                            self.ip_count += 1
+                            self.get_news_page(url, self.ip)
+                        else:
+                            self.get_news_page(url, self.ip)
+                    except requests.exceptions.ProxyError:
+                        print('重试链接....远程连接无响应......')
+                except Exception as e:
+                    print('发生其他异常{}'.format(e))
+                    print('更换ip中......')
+                    time.sleep(10)
+                    self.ip = proxies.res_ip()
+                    self.ip_count += 1
+                    try:
+                        self.get_news_page(url, self.ip)
+                    except:
+                        pass
+                time.sleep(1)
+                print('一个网址爬虫结束.....')
+            else:
+                print('使用ip已达到{}个'.format(str(self.ip_count)) + ',爬虫停止运行......')
+                break
+        logger.info('爬取完毕......')
 
 if __name__ == "__main__":
     toutiao = TouTiaoSpider()

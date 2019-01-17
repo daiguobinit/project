@@ -10,6 +10,8 @@ import random
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 # 禁用安全请求警告
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+from ippro.proxies import res_ip
+
 
 class XiaoHongShuSpider(object):
     """
@@ -61,11 +63,10 @@ class XiaoHongShuSpider(object):
         self.is_work = True
         # ip代理
         self.proxies_list = [
-            '49.67.149.238:8736',
-            '49.84.38.45:4203',
-            '117.44.27.173:4201',
-            '106.110.203.250:4276'
+            '115.195.75.189:4217',
+
         ]
+        self.ip = res_ip()
 
     def get_news_url(self, carts):
         """
@@ -77,7 +78,7 @@ class XiaoHongShuSpider(object):
         print(url)
 
         ip = random.choice(self.proxies_list)
-        response = requests.get(url, headers=self.headers_one, proxies={'https': ip}, verify=False)
+        response = requests.get(url, headers=self.headers_one, verify=False)  # , proxies={'https': ip}
         content = etree.HTML(response.content.decode())
         if content.xpath('.//h3[@class="t"]/a/@href'):
             url_list = content.xpath('.//h3[@class="t"]/a/@href')
@@ -106,7 +107,7 @@ class XiaoHongShuSpider(object):
         print(url, '*******************')
         ip = random.choice(self.proxies_list)
         # 通过重定向网址获取目标网址
-        response = requests.get(url, headers=self.headers_two, proxies={'https': ip}, allow_redirects=False)
+        response = requests.get(url, headers=self.headers_two, proxies={'https': self.ip}, allow_redirects=False)
         print(response.status_code)
         news_url = response.headers['Location']
         print(news_url)
@@ -114,7 +115,7 @@ class XiaoHongShuSpider(object):
         print(id)
 
         # 获取cookies
-        response_cookie = requests.get(news_url, allow_redirects=False, proxies={'https': ip})
+        response_cookie = requests.get(news_url, allow_redirects=False, proxies={'https': self.ip})
         print(response_cookie.url)
         cookies = response_cookie.headers['Set-Cookie']
         xhs = cookies.split(';')[0]
@@ -125,7 +126,7 @@ class XiaoHongShuSpider(object):
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.9',
-            'Connection': 'keep-alive',
+            # 'Connection': 'keep-alive',
             'Host': 'www.xiaohongshu.com',
             'Cookie': cook,
             'Referer': 'https://www.xiaohongshu.com/discovery/item/' + str(id),
@@ -139,7 +140,7 @@ class XiaoHongShuSpider(object):
         news_url = news_url.split('?')[0] + '?_at={}'.format(params_id)
         print(news_url, '==========')
         # 通过目标网址获取新闻页
-        news_response = requests.get(news_url, headers=headers, proxies={'https': ip})
+        news_response = requests.get(news_url, headers=headers, proxies={'https': self.ip})
         # print(news_response.content.decode())
         data = etree.HTML(news_response.content.decode())
         if data.xpath('.//div/div[@class="content"]/p/text()'):
@@ -178,7 +179,7 @@ class XiaoHongShuSpider(object):
     #     self.comment_jsonfile.close()
 
     def run(self):
-        excelfile = xlrd.open_workbook(r'./keyword_20181126.xlsx')
+        excelfile = xlrd.open_workbook(r'./../xiaohongshu/keywordV1.4.xlsx')
         print(excelfile.sheet_names())
         sheet1 = excelfile.sheet_by_name('Sheet1')
         cols = sheet1.col_values(0)

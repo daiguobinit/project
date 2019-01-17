@@ -4,6 +4,25 @@ import json
 import re
 import math
 import time
+from datetime import datetime
+from datetime import timedelta
+import logging
+import traceback
+requests.adapters.DEFAULT_RETRIES = 5
+
+# 设置日志记录
+LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S '   # 配置输出时间的格式，注意月份和天数不要搞乱了
+file_name = r"./../jiemian/jiemian-{}.log".format(str(datetime.now()).split(' ')[0])
+logging.basicConfig(level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    datefmt=DATE_FORMAT,
+                    filename=file_name,   # 有了filename参数就不会直接输出显示到控制台，而是直接写入文件
+                    )
+headle = logging.FileHandler(filename=file_name, encoding='utf-8')
+logger = logging.getLogger()
+logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 class JieMianSpider():
@@ -13,8 +32,7 @@ class JieMianSpider():
             'Accept':'*/*',
             'Accept-Encoding':'gzip, deflate, sdch',
             'Accept-Language':'zh-CN,zh;q=0.8',
-            'Connection':'keep-alive',
-            'Cookie':'pgv_pvi=8618249216; pgv_si=s6958286848; SERVERID=10.70.50.21',
+            # 'Cookie':'pgv_pvi=8618249216; pgv_si=s6958286848; SERVERID=10.70.50.21',
             'Host':'a.jiemian.com',
             'Referer':'https://www.jiemian.com/lists/51.html',
             'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
@@ -24,8 +42,7 @@ class JieMianSpider():
             'Accept': '*/*',
             'Accept-Encoding': 'gzip, deflate, sdch',
             'Accept-Language': 'zh-CN,zh;q=0.8',
-            'Connection': 'keep-alive',
-            'Cookie': 'pgv_pvi=8618249216; pgv_si=s6958286848; SERVERID=10.70.50.21',
+            # 'Cookie': 'pgv_pvi=8618249216; pgv_si=s6958286848; SERVERID=10.70.50.21',
             'Host': 'a.jiemian.com',
             'Referer': 'https://www.jiemian.com/article/2598846.html',
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
@@ -36,29 +53,34 @@ class JieMianSpider():
             'Accept-Encoding':'gzip, deflate, sdch',
             'Accept-Language':'zh-CN,zh;q=0.8',
             'Cache-Control':'max-age=0',
-            'Connection':'keep-alive',
-            'Cookie':'__jsluid=e2383ce96a600d8b7af7367fb52adaaf; pgv_pvi=8618249216; pgv_si=s6958286848; _tb_sess_r=https%3A//www.jiemian.com/lists/51.html; _tb_t_ppg=https%3A//www.jiemian.com/article/2596911.html; trc_cookie_storage=taboola%2520global%253Auser-id%3D89521ea2-baa4-4a77-b1bd-dafd704907a8-tuct2dc33bb',
+            # 'Cookie':'__jsluid=e2383ce96a600d8b7af7367fb52adaaf; pgv_pvi=8618249216; pgv_si=s6958286848; _tb_sess_r=https%3A//www.jiemian.com/lists/51.html; _tb_t_ppg=https%3A//www.jiemian.com/article/2596911.html; trc_cookie_storage=taboola%2520global%253Auser-id%3D89521ea2-baa4-4a77-b1bd-dafd704907a8-tuct2dc33bb',
             'Host':'www.jiemian.com',
             'Upgrade-Insecure-Requests':'1',
             'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'''
         }
 
-        self.start_url = 'https://a.jiemian.com/index.php?m=lists&a=cLists&notid=2600447,2603510,2600141&id=194&type=card&callback=jQuery110209049534785792808_1541642080659&page={}&_=1541642080661'
+        self.start_url = 'http://a.jiemian.com/index.php?m=lists&a=cLists&notid=2600447,2603510,2600141&id=194&type=card&callback=jQuery110209049534785792808_1541642080659&page={}&_=1541642080661'
         self.news_page_num = 1
         # 用作爬虫时间判断的计数
         self.time_out_num = 0
         # 用作判断爬虫是否停止的参数
         self.stop_spider = False
         # 评论url模板
-        self.comment_port_url = 'https://a.jiemian.com/index.php?m=comment&a=getlistCommentP&aid={}&page={}&comment_type=1&per_page=5&callback=jQuery110208603319204711195_1541662025237&_=1541662025244'
-        # 打开新闻json文件
-        self.news_jsonfile = open('./jiemian_news.json', 'wb')
-        # 打开评论json文件
-        self.comment_jsonfile = open('./jiemian_comment.json', 'wb')
-        # 定义开始时间 y-m-d
-        self.start_time = '2018-9-1'
-        # 定义结束时间 y-m-d
-        self.end_time = '2018-10-1'
+        self.comment_port_url = 'http://a.jiemian.com/index.php?m=comment&a=getlistCommentP&aid={}&page={}&comment_type=1&per_page=5&callback=jQuery110208603319204711195_1541662025237&_=1541662025244'
+        # 通过系统时间自动计算时间间隔
+        date = datetime.now() - timedelta(days=3)  # 七天前的时间，不包括今天
+        str_time = str(date).split(' ')[0]
+
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+        yesterday = str(yesterday).split(' ')[0]
+
+        print('爬取时间段：{}到{}'.format(str_time, yesterday))
+
+        logging.info('爬取时间段：{}到{}'.format(str_time, yesterday))
+        # 定义开始时间 y-m-d  离现在时间远
+        self.start_time = str_time
+        # 定义结束时间 y-m-d  离现在时间近
+        self.end_time = yesterday
         # 错误计数
         self.error_num = 0
         # 错误url
@@ -69,6 +91,8 @@ class JieMianSpider():
     # 获取新闻列表的url
     def get_news_url(self, url):
         print(url, '%%%%%%%%%')
+        s = requests.session()
+        s.keep_alive = False
         news_url_json_data = requests.get(url, headers=self.headers_one)
         content = news_url_json_data.text
         content = content.split('(')[1].split(')')[0]
@@ -97,6 +121,8 @@ class JieMianSpider():
     def get_news_page(self, url):
         print(url)
         # self.headers_two['Referer'] = str(url)
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(url, headers=self.headers_three)
         code = response.status_code
         news_page_content = etree.HTML(response.content.decode())
@@ -229,6 +255,8 @@ class JieMianSpider():
     # 处理从评论接口处获取的评论信息
     def parse_comment_page(self, comment_port_url, source_date, source_time, source_title, source_url, floor_num):
         print(comment_port_url)
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(comment_port_url, headers=self.headers_two)
         data = response.content.decode()
         data = re.sub(r'\\"', '\"', data)
@@ -258,7 +286,7 @@ class JieMianSpider():
                     comment_item['author'] = author
                     # 文章回复内容
                     text = data.xpath('.//div[1]/p/text()')[0].encode('utf-8').decode('unicode_escape')
-                    comment_item['text'] = text
+                    comment_item['content'] = text
                     try:
                         data_all = data.xpath('.//div[@class="comment-footer"]/span[1]/text()')[0]
                         print(data_all)
@@ -301,52 +329,47 @@ class JieMianSpider():
         all_page_num = math.ceil(comments_count/5)
         url_num = url.split('/')[-1].split('.')[0]
         floor_num = 1
-        for port_page_num in range(1, all_page_num + 1):
+        for port_page_num in range(1, int(all_page_num + 1)):
 
             comment_port_url = self.comment_port_url.format(str(url_num), str(port_page_num))
             floor_num = self.parse_comment_page(comment_port_url, data, times, title, source_url, floor_num)
 
     # 将新闻信息写入json文件
     def write_news_into_jsonfile(self, news_item):
-        news_item = json.dumps(dict(news_item), ensure_ascii=False) + ',\n'
+        news_item = json.dumps(dict(news_item), ensure_ascii=False) + '\n'
         # try:
-        self.news_jsonfile.write(news_item.encode('utf-8'))
+        print('写入文件中.....')
+        with open('./../jiemian/27_{}_jiemian_news.json'.format(str(now_time)), 'ab') as f:
+            f.write(news_item.encode("utf-8"))
         # except:
         #     pass
 
     # 将文章评论信息写入json文件
     def write_comment_into_jsonfile(self, comment_item):
-        comment_item = json.dumps(dict(comment_item), ensure_ascii=False) + ',\n'
+        comment_item = json.dumps(dict(comment_item), ensure_ascii=False) + '\n'
         try:
-            self.comment_jsonfile.write(comment_item.encode('utf-8'))
+            with open('./../jiemian/41_{}_jiemian_comment.json'.format(str(now_time)), 'ab') as f:
+                f.write(comment_item.encode("utf-8"))
         except:
             pass
-
-    # 关闭新闻json文件
-    def close_news_jsonfile(self):
-        self.news_jsonfile.close()
-
-    # 关闭评论json文件
-    def close_comment_jsonfile(self):
-        self.comment_jsonfile.close()
 
     def run(self):
         while self.news_page_num < 100:
             url_list_new, data = self.get_news_url(self.start_url.format(str(self.news_page_num)))
             # 时间判断
-            data = '2018-' + re.sub('/', '-', data)
+            data = '2019-' + re.sub('/', '-', data)
             get_time = time.mktime(time.strptime(data, "%Y-%m-%d"))
-            start_time = time.mktime(time.strptime(self.end_time, "%Y-%m-%d"))
-            if self.start_time != '':
-                end_time = time.mktime(time.strptime(self.start_time, "%Y-%m-%d"))
-            else:
-                end_time = time.mktime(time.strptime('2100-1-1', "%Y-%m-%d"))
-            if float(get_time) < float(end_time):
+            end_time = time.mktime(time.strptime(self.end_time, "%Y-%m-%d"))
+            # if self.start_time != '':
+            start_time = time.mktime(time.strptime(self.start_time, "%Y-%m-%d"))
+            # else:
+            #     start_time = time.mktime(time.strptime('2100-1-1', "%Y-%m-%d"))
+            if float(get_time) < float(start_time):
                 # self.crawler.engine.close_spider(self, '爬虫终止')
-                print(data)
+                print(data,111)
                 # break_flag = True
                 break
-            if float(end_time) <= float(get_time) <= float(start_time):
+            if float(start_time) <= float(get_time) <= float(end_time):
                 print(data)
 
                 for news_page_url in url_list_new:
@@ -358,11 +381,16 @@ class JieMianSpider():
                     except:
                         self.error_num += 1
                         self.error_url_list.append(news_page_url)
+                        print('error')
             self.news_page_num += 1
         print(self.error_num)
         print(self.error_url_list)
         print(self.all_news_num)
+        logger.info('爬取完毕......')
 
 if __name__ == "__main__":
     jiemian_spider = JieMianSpider()
-    jiemian_spider.run()
+    try:
+        jiemian_spider.run()
+    except:
+        logger.error(traceback.format_exc())

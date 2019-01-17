@@ -1,0 +1,213 @@
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-29 14:02:03+08:00 (in 38.091975 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-29 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Running job "ifeng (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Running job "tencent (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Running job "wangyi (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Running job "yidian (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-29 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Running job "zhihu (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" (scheduled at 2018-12-29 14:02:03+08:00)
+Next wakeup is due at 2018-12-30 14:02:03+08:00 (in 86399.999796 seconds)
+Job "yidian (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" executed successfully
+Job "wangyi (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" executed successfully
+Job "tencent (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" executed successfully
+Job "ifeng (trigger: cron[hour='14', minute='2', second='3'], next run at: 2018-12-30 14:02:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-30 14:02:03+08:00 (in 85923.178523 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-29 14:11:03+08:00 (in 21.505140 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-29 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Running job "ifeng (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-30 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Running job "tencent (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-29 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Running job "wangyi (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-30 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Running job "yidian (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-29 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Running job "zhihu (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-30 14:11:03 CST)" (scheduled at 2018-12-29 14:11:03+08:00)
+Next wakeup is due at 2018-12-30 14:11:03+08:00 (in 86399.985909 seconds)
+Job "yidian (trigger: cron[hour='14', minute='11', second='3'], next run at: 2018-12-30 14:11:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-29 14:20:03+08:00 (in 33.946965 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-29 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Running job "ifeng (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-29 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Running job "tencent (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-29 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Running job "wangyi (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-29 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Running job "yidian (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-29 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Running job "zhihu (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-30 14:20:03 CST)" (scheduled at 2018-12-29 14:20:03+08:00)
+Next wakeup is due at 2018-12-30 14:20:03+08:00 (in 86399.995023 seconds)
+Job "yidian (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-30 14:20:03 CST)" executed successfully
+Job "tencent (trigger: cron[hour='14', minute='20', second='3'], next run at: 2018-12-30 14:20:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-29 15:02:03+08:00 (in 39.274134 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "ifeng (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "jiemian (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "mop (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "sina (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "souhu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "tencent (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "wangyi (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "yidian (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-29 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Running job "zhihu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" (scheduled at 2018-12-29 15:02:03+08:00)
+Next wakeup is due at 2018-12-30 15:02:03+08:00 (in 86399.950885 seconds)
+Job "yidian (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "souhu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "sina (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "tencent (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "hupu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "zhihu (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Job "wangyi (trigger: cron[hour='15', minute='2', second='3'], next run at: 2018-12-30 15:02:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-30 00:01:03+08:00 (in 31902.637872 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2018-12-29 16:35:03+08:00 (in 25.275176 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-29 16:35:03 CST)" (scheduled at 2018-12-29 16:35:03+08:00)
+Running job "tencent (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-30 16:35:03 CST)" (scheduled at 2018-12-29 16:35:03+08:00)
+Running job "wangyi (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-29 16:35:03 CST)" (scheduled at 2018-12-29 16:35:03+08:00)
+Running job "yidian (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-30 16:35:03 CST)" (scheduled at 2018-12-29 16:35:03+08:00)
+Running job "zhihu (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-29 16:35:03 CST)" (scheduled at 2018-12-29 16:35:03+08:00)
+Next wakeup is due at 2018-12-30 00:01:03+08:00 (in 26759.985729 seconds)
+Job "yidian (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-30 16:35:03 CST)" executed successfully
+Job "tencent (trigger: cron[hour='16', minute='35', second='3'], next run at: 2018-12-30 16:35:03 CST)" executed successfully
+定时任务开启
+Running job Every 1 day at 16:39:00 do run() (last run: [never], next run: 2018-12-29 16:39:00)
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启
+定时任务开启

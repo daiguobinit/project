@@ -4,10 +4,19 @@ from chance.items import ChanceItem
 from scrapy.http import Request
 import re
 import time
+from datetime import datetime
+from datetime import timedelta
 
 # 自定义爬取结束时间2018-10-30
-END_TIME = '2018-9-1'
-START_TIME = '2018-10-1'
+
+date = datetime.now() - timedelta(days=3)
+news_start_time = str(date).split(' ')[0]
+yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+yesterday = str(yesterday).split(' ')[0]
+print('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+END_TIME = news_start_time
+START_TIME = yesterday
 # 自定义爬取最大页数,默认是网站目前的最大页数1645
 MAX_PAGE_NUM = 1645
 
@@ -16,13 +25,18 @@ class IfengSpider(scrapy.Spider):
     # allowed_domains = ['https://auto.ifeng.com/']"https://auto.ifeng.com/xinche/","https://auto.ifeng.com/daogou/",
     # "https://auto.ifeng.com/shijia/",https://auto.ifeng.com/hangye/
     start_urls = [
-                  "https://auto.ifeng.com/hangye/",
+        "https://auto.ifeng.com/xinche/",
                   ]
     page_num = 1
     count = 1
     shijia_page_num = 1
     daogou_page_num = 1
     hangye_page_num = 1
+
+    xinche_stop = False
+    daogou_stop = False
+    shijia_stop = False
+    hangye_stop = False
 
     def parse(self, response):
         item = ChanceItem()
@@ -49,7 +63,15 @@ class IfengSpider(scrapy.Spider):
                 end_time = time.mktime(time.strptime('2100-1-1', "%Y-%m-%d"))
             if END_TIME != '' and float(get_time) < float(end_time):
                 # self.crawler.engine.close_spider(self, '爬虫终止')
-                return
+                print(response.url)
+                if 'xinche' in response.url:
+                    self.xinche_stop = True
+                if 'shijia' in response.url:
+                    self.shijia_stop = True
+                if 'daogou' in response.url:
+                    self.daogou_stop = True
+                if 'hangye' in response.url:
+                    self.hangye_stop = True
             # else:
             # http://data.auto.ifeng.com/pic/g-14722.html#pid=2283636
             if float(end_time) <= float(get_time) <= float(start_time):
@@ -65,46 +87,48 @@ class IfengSpider(scrapy.Spider):
                     item['title'] = title
                     item['content'] = content
                     item['time'] = time_new
-                    item['data'] = data
+                    item['date'] = data
                     item['url'] = cart_new_url
                     item['platform'] = '凤凰网汽车'
-                    item['source'] = '凤凰网汽车'
-                    item['author'] = ''
+                    item['source_author'] = '凤凰网汽车'
                     item['comments_count'] = ''
-                    item['like'] = ''
+                    item['likes'] = ''
+                    item['views'] = ''
                     item['keyword'] = ''
+                    print(item)
                     yield item
                 else:
 
                     yield scrapy.Request(cart_new_url, callback=self.parse_new_page, meta={'title':title, 'content': content, 'data':data, 'time':time_new, 'url': cart_new_url})
 
-        # if self.page_num <= MAX_PAGE_NUM:
-        #     self.page_num += 1
-        #     print('新车'+str(self.page_num)+"页")
-        #     new_url = self.start_urls[0]+str(self.page_num)+".shtml"
-        #     yield scrapy.Request(new_url, callback=self.parse)
-        #     return
+        if not self.xinche_stop:
+            if self.page_num <= MAX_PAGE_NUM:
 
-        # if self.shijia_page_num < 128:
-        #     print('试驾' + str(self.shijia_page_num) + '页')
-        #     new_url = "https://auto.ifeng.com/shijia/"+str(self.shijia_page_num)+".shtml"
-        #     self.shijia_page_num += 1
-        #     yield scrapy.Request(new_url, callback=self.parse)
-        #     return
+                self.page_num += 1
+                print('新车'+str(self.page_num)+"页")
+                new_url = self.start_urls[0]+str(self.page_num)+".shtml"
+                yield scrapy.Request(new_url, callback=self.parse)
 
-        # if self.daogou_page_num <= 145:
-        #     print('导购' + str(self.daogou_page_num) + '页')
-        #     new_url = 'https://auto.ifeng.com/daogou/'+str(self.daogou_page_num)+".shtml"
-        #     self.daogou_page_num += 1
-        #     yield scrapy.Request(new_url, callback=self.parse)
-        #     return
+        if not self.shijia_stop:
+            if self.shijia_page_num < 128:
+                print('试驾' + str(self.shijia_page_num) + '页')
+                new_url = "https://auto.ifeng.com/shijia/"+str(self.shijia_page_num)+".shtml"
+                self.shijia_page_num += 1
+                yield scrapy.Request(new_url, callback=self.parse)
 
-        if self.hangye_page_num < 1641:
-            print('行业' + str(self.hangye_page_num) + '页')
-            new_url = 'https://auto.ifeng.com/hangye/'+str(self.hangye_page_num)+".shtml"
-            self.hangye_page_num += 1
-            yield scrapy.Request(new_url, callback=self.parse)
-            return
+        if not self.daogou_stop:
+            if self.daogou_page_num <= 145:
+                print('导购' + str(self.daogou_page_num) + '页')
+                new_url = 'https://auto.ifeng.com/daogou/'+str(self.daogou_page_num)+".shtml"
+                self.daogou_page_num += 1
+                yield scrapy.Request(new_url, callback=self.parse)
+
+        if not self.hangye_stop:
+            if self.hangye_page_num < 1641:
+                print('行业' + str(self.hangye_page_num) + '页')
+                new_url = 'https://auto.ifeng.com/hangye/'+str(self.hangye_page_num)+".shtml"
+                self.hangye_page_num += 1
+                yield scrapy.Request(new_url, callback=self.parse)
 
     def parse_new_page(self, response):
 

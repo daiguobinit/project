@@ -1,0 +1,26 @@
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-12 00:20:03+08:00 (in 30588.508368 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-12 00:20:03+08:00 (in 30240.351455 seconds)
+Looking for jobs to run
+Next wakeup is due at 2019-01-12 00:20:03+08:00 (in 0.276347 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-13 00:20:03 CST)" (scheduled at 2019-01-12 00:20:03+08:00)
+Next wakeup is due at 2019-01-13 00:20:03+08:00 (in 86399.988331 seconds)
+Job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-13 00:20:03 CST)" executed successfully
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-14 00:20:03 CST)" (scheduled at 2019-01-13 00:20:03+08:00)
+Next wakeup is due at 2019-01-14 00:20:03+08:00 (in 86399.995534 seconds)
+Job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-14 00:20:03 CST)" executed successfully
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-14 00:20:03 CST)" (scheduled at 2019-01-14 00:20:03+08:00)
+Next wakeup is due at 2019-01-15 00:20:03+08:00 (in 86399.996229 seconds)
+Job "toutiao (trigger: cron[hour='0', minute='20', second='3'], next run at: 2019-01-15 00:20:03 CST)" executed successfully

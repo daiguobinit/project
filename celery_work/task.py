@@ -27,8 +27,8 @@ logger = logging.getLogger()
 logger.addHandler(headle)
 
 executors = {
-    'default': ThreadPoolExecutor(30),
-    'processpool': ProcessPoolExecutor(20)
+    # 'default': ThreadPoolExecutor(20),  # 线程
+    'processpool': ProcessPoolExecutor(30)  # 进程   两者可同时启用也可以单独启用
 }
 sched = BlockingScheduler(executors=executors)
 sched_two = BackgroundScheduler(executors=executors)
@@ -60,32 +60,52 @@ def tencent():
     print('腾讯新闻任务开启......')
 
 def yidian():
-    os.system('python ./../yiidanzixun/yidianzixun.py')
-    print('凤凰网任务开启......')
+    os.system('python ./../yidianzixun/yidianzixun.py')
+    print('一点资讯任务开启......')
 
 def ifeng():
     os.system('scrapy crawl ifeng')
     os.system('python ./../chance/zimeiti.py')
     print('凤凰网任务开启......')
 
-# sched.add_job(func=xiaohongshu, trigger='cron', hour=9, minute=29, second=3, id='xiaohongshu')
-# sched.add_job(func=dianping, trigger='cron', day_of_week='sat-sun', hour=1, minute=1, second=3, id='dianping')
-sched.add_job(func=zhihu, trigger='cron', hour=0, minute=1, second=3, id='zhihu')
-sched.add_job(func=hupu, trigger='cron', hour=0, minute=1, second=3, id='hupu')
-sched.add_job(func=wangyi, trigger='cron', hour=0, minute=1, second=3, id='wangyi')
-sched.add_job(func=tencent, trigger='cron', hour=0, minute=1, second=3, id='tencent')
-sched.add_job(func=yidian, trigger='cron', hour=0, minute=1, second=3, id='yidian')
-sched.add_job(func=ifeng, trigger='cron', hour=0, minute=1, second=3, id='ifeng')
+def jiemian():
+    os.system('python ./../jiemian/jiemian_spider.py')
+    print('界面新闻任务开启......')
+
+def mop():
+    os.system('python ./../mop/mop_spider.py')
+    print('猫扑新闻任务开启......')
+
+def sina():
+    os.system('python ./../sina/newcarts.py')
+    print('新浪网任务开启......')
+
+def souhu():
+    os.system('python ./../souhu/souhu.py')
+    print('搜狐网任务开启......')
+
+# sched.add_job(func=xiaohongshu, trigger='cron', hour=0, minute=23, second=3, id='xiaohongshu', misfire_grace_time=600)
+# sched.add_job(func=dianping, trigger='cron', day_of_week='sat-sun', hour=1, minute=1, second=3, id='dianping', misfire_grace_time=600)
+sched.add_job(func=zhihu, trigger='cron', hour=0, minute=1, second=3, id='zhihu', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=hupu, trigger='cron', hour=0, minute=1, second=3, id='hupu', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=wangyi, trigger='cron', hour=0, minute=1, second=3, id='wangyi', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=tencent, trigger='cron', hour=0, minute=1, second=3, id='tencent', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=yidian, trigger='cron', hour=0, minute=1, second=3, id='yidian', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=ifeng, trigger='cron', hour=0, minute=1, second=3, id='ifeng', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=jiemian, trigger='cron', hour=0, minute=1, second=3, id='jiemian', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=mop, trigger='cron', hour=0, minute=1, second=3, id='mop', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=sina, trigger='cron', hour=0, minute=1, second=3, id='sina', max_instances=2, misfire_grace_time=600)
+sched.add_job(func=souhu, trigger='cron', hour=0, minute=1, second=3, id='souhu', max_instances=2, misfire_grace_time=600)
 
 
-def err_listener(ev):
-    if ev.exception:
-        logging.info(traceback.format_exc())
+def err_listener(event):
+    if event.exception:
+        logging.error(traceback.format_exc())
     else:
-        logging.info('{} miss'.format(str(ev.job)))
+        logging.info('{} miss'.format(str(event.job)))
 
 
-sched.add_listener(err_listener, EVENT_JOB_ERROR | EVENT_JOB_MISSED)
+sched_two.add_listener(err_listener, EVENT_JOB_ERROR | EVENT_JOB_MISSED)
 
 print('定时任务开启')
 logging.info('定时任务开启')

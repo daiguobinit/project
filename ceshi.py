@@ -1,56 +1,197 @@
-from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
 import requests
-import time
-import re
-import json
-import ast
-import HTMLParser
-from xml.sax.saxutils import unescape
 from lxml import etree
-
-# browser = webdriver.Chrome()  # Get local session of Chrome
-# # browser.set_window_size(1000,30000)
-# browser.get("https://www.toutiao.com/ch/news_car/")  # Load page
-# time.sleep(5)
-# # browser.execute_script("window.scrollBy(0,1000)")
-# # js="window.scrollTo(0,document.body.scrollHeight)"
-# # browser.execute_script(js)
-# for i in range(10000):
-#     ActionChains(browser).key_down(Keys.DOWN).perform()
-#
-# time.sleep(2)
-
-url = 'https://www.toutiao.com/a6615079328390578702/'
-headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'cache-control': 'max-age=0',
-    # 'cookie': 'tt_webid=6628733243796178436; tt_webid=6628733243796178436; csrftoken=3a6f2dc0f315bd1fe957319a75bba4ed; uuid="w:2203d39caf3249c0bcda19ee5839b850"; UM_distinctid=1675827673a27a-0dd556679b3f63-3a3a5d0c-15f900-1675827673b22c; __tasessionId=qb2c0x9mb1543386267822; CNZZDATA1259612802=992935523-1543369669-%7C1543385869',
-    'referer': 'https://www.toutiao.com/ch/news_car/',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
-}
-response = requests.get(url, headers=headers)
-data_all = response.content.decode()
-print(data_all)
-data = re.search(r"articleInfo: {([\s\S]*time: '\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{1,2}:\d{1,2})", data_all).group(1)
-data = '{' + data + "'}}"
-print(data)
-data = re.sub('\n', '', data)
-data = unescape(data)
-data = data.replace('&quot;', '"').replace('&#x3D;', '=')
-content = re.search('content: ([\s\S]*)groupId',data).group(1).strip()[1:][:-2]
-content = etree.HTML(content)
-text = content.xpath('.//p//text()')
-text_con = ''.join(text)
-date, create_time = re.search('(\d{4}-\d{1,2}-\d{1,2}) (\d{1,2}:\d{1,2}:\d{1,2})', data).group(1, 2)
-id_num = re.search("groupId: '(\d{1,50}).*itemId", data).group(1)
-source = re.search("source: '(.*)time", data).group(1).strip()[:-2]
-comment_count = re.search("commentCount: '(\d{0,10})[\s\S]*ban_comment", data_all).group(1)
+import json
+import re
+import math
+import time
+import ast
+from datetime import datetime
+from datetime import timedelta
+import xlrd
+import logging
+import traceback
+from urllib.request import quote
+requests.adapters.DEFAULT_RETRIES = 5
 
 
 
+class MopSpider(object):
+    def __init__(self):
+        self.start_url = 'http://autoapi.dftoutiao.com/mopsearch_h5/searchnews?jsonpcallback=jQuery18309647992932972742_1541999181929&keywords={}&stkey_zixun=&lastcol_zixun={}&splitwordsarr=&stkey_video=&lastcol_video=&maintype=&domain=mopauto_pc&os=Win7&qid=&recgid=15417568671858769&_=1541999185686'
+        # 获取数据接口的headers
+        self.headers_one = {
+            'Accept':'*/*',
+            'Accept-Encoding':'gzip, deflate, sdch',
+            'Accept-Language':'zh-CN,zh;q=0.8',
+            'Host':'autoapi.dftoutiao.com',
+            'Connection': 'close',
+            'Referer':'http://auto.mop.com/search-models.html?query=%E5%AE%9D%E9%A9%AC',
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+        }
+        # 获取新闻详情页的headers
+        self.headers_two = {
+            'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Encoding':'gzip, deflate, sdch',
+            'Accept-Language':'zh-CN,zh;q=0.8',
+            'Cache-Control':'max-age=0',
+            'Connection': 'close',
+            # 'Cookie':'mopauto_uid=15417568671858769; _mc=m-1541756833719532435; BDTUJIAID=23ededdadee3798fd3cfff3b5345490d; localCity=%E4%B8%8A%E6%B5%B7; cityname=%E4%B8%8A%E6%B5%B7; _ms=1541998826147889031; Hm_lvt_471a5249a2db8e2ac0a5f23672636f92=1541756867,1541998826; Hm_lpvt_471a5249a2db8e2ac0a5f23672636f92=1542002510',
+            'Host':'auto.mop.com',
+            'If-Modified-Since':'Mon, 12 Nov 2018 05:34:13 GMT',
+            'If-None-Match':"FiTD5v2cf3I2RtvdJb8DoWBQerYh",
+            'Referer':'http://auto.mop.com/search-models.html?query=%E5%AE%9D%E9%A9%AC',
+            'Upgrade-Insecure-Requests':'1',
+            'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
+        }
+
+        self.next_port_parameter = ''
+        # 表示爬虫是否继续爬取
+        self.is_work = True
+        date = datetime.now() - timedelta(days=3)
+        news_start_time = str(date).split(' ')[0]
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+        yesterday = str(yesterday).split(' ')[0]
+        print('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+        logging.info('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+        # 定义开始时间 y-m-d  离现在时间远  news_start_time
+        self.start_time = news_start_time
+        # 定义结束时间 y-m-d  离现在时间近  yesterday
+        self.end_time = yesterday
+        # 爬虫计数
+        self.get_num = 1
+
+    # 从借口中获取新闻列表信息
+    def get_news_port_page(self, next_port_parameter, key_word):
+        s = requests.session()
+        s.keep_alive = False
+        response = requests.get(self.start_url.format(key_word, next_port_parameter), headers=self.headers_one)
+        print(response.url)
+        print(response.text)
+        response = response.text
+        response_dict = response.split('({')[1].split('})')[0]
+        response_dict = '{' + response_dict + "}"
+        response_dict = ast.literal_eval(response_dict)
+        next_port_parameter = response_dict['lastcol_zixun']
+
+        datas = response_dict['data']
+        for data in datas:
+            # 获取的新的url的参数
+            news_url = data['url']
+            print(news_url)
+            # 日期
+            news_date = data['date']
+            print(news_date)
+            # 来源
+            source = data['source']
+
+            # 做时间判断-----------------------------------------------
+            get_news_time = news_date.split(' ')[0]
+            get_news_time = time.mktime(time.strptime(get_news_time, "%Y-%m-%d"))
+            end_time = time.mktime(time.strptime(self.end_time, "%Y-%m-%d"))
+            if self.start_time != '':
+                start_time = time.mktime(time.strptime(self.start_time, "%Y-%m-%d"))
+            else:
+                start_time = time.mktime(time.strptime('2010-1-1', "%Y-%m-%d"))
+            if float(get_news_time) > float(end_time):
+                continue
+            if float(start_time) <= float(get_news_time) <= float(end_time):
+                self.get_news_page('http://auto.mop.com/a/' + news_url, news_date, source)
+            else:
+                print(1111111)
+                self.is_work = False
+        # --------------------------------------------------------
+        if self.is_work:
+            self.get_news_port_page(key_word, next_port_parameter)
+
+    # 获取新闻详情页
+    def get_news_page(self, url, news_date, source):
+        item = {}
+        try:
+            s = requests.session()
+            s.keep_alive = False
+            response = requests.get(url)
+            print(url)
+            data = etree.HTML(response.content.decode())
+
+
+            if data:
+                title = data.xpath('.//h1[@class="artice-title"]/text()')[0]
+                page_num_list = data.xpath('.//div[@class="mp-auto-list-paging tc mt30"]/a/text()')
+                text = data.xpath('.//div[@class="article"]/p/text()')
+                text = ''.join(text)
+                page_num_list = data.xpath('.//div[@class="mp-auto-list-paging tc mt30"]/a/text()')
+                if page_num_list:
+                    num = int(page_num_list[-1]) + 1
+                    print(num)
+                    for i in range(2, num):
+                        next_page_url = url.split('.html')[0] + '-' + str(i) + '.html'
+                        print(next_page_url)
+                        text2 = self.get_next_news_page(next_page_url)
+                        text = text + text2
+                # 生成信息字典
+                # 网站
+                item['platform'] = '猫扑新闻'
+                # 发布日期
+                item['date'] = news_date.split(' ')[0]
+                # 发布时间
+                item['time'] = news_date.split(' ')[1]
+                # 标题title
+                item['title'] = title
+                # 正文
+                item['content'] = text
+                # 来源
+                item['source'] = source
+                # 点击数
+                item['clicks'] = ''
+                # 阅读数
+                item['views'] = ''
+                # 评论数
+                item['comments_count'] = ''
+                # 点赞数
+                item['likes'] = ''
+                # 关键字
+                item['keyword'] = ''
+                # url
+                item['url'] = url
+        except:
+            pass
+
+    # 获取新闻翻页数据
+    def get_next_news_page(self, next_page_url):
+        s = requests.session()
+        s.keep_alive = False
+        response = requests.get(next_page_url)
+        data = etree.HTML(response.content.decode())
+        text = data.xpath('.//div[@class="article"]/p/text()')
+        text = ''.join(text)
+        return text
+
+    # # 将数据写入json文件
+    # def write_news_info_into_jsonfile(self, item):
+    #     item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+    #     print('正在写入第%s条数据' % str(self.get_num))
+    #     with open('./../mop/21_{}_mop.json'.format(str(now_time)), 'ab') as f:
+    #         f.write(item.encode("utf-8"))
+    #     self.get_num += 1
+
+    def run(self):
+        excelfile = xlrd.open_workbook(r'./../zhihu/keywordV1.4.xlsx')
+        sheet1 = excelfile.sheet_by_name('Sheet1')
+        cols = sheet1.col_values(0)
+        cols = cols[1:]
+        print(cols)
+        for keyword in cols:
+            keyword = quote(keyword, encoding="utf-8")
+            print(keyword)
+
+            keyword = quote(keyword, encoding="utf-8")
+            print(keyword)
+
+            self.get_news_port_page(keyword, self.next_port_parameter)
+
+
+if __name__ == "__main__":
+    mopspider = MopSpider()
+    mopspider.run()

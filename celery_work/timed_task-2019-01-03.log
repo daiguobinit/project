@@ -1,0 +1,55 @@
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-03 09:21:03+08:00 (in 32.819463 seconds)
+Looking for jobs to run
+Running job "jiemian (trigger: cron[hour='9', minute='21', second='3'], next run at: 2019-01-03 09:21:03 CST)" (scheduled at 2019-01-03 09:21:03+08:00)
+Running job "toutiao (trigger: cron[hour='9', minute='21', second='3'], next run at: 2019-01-03 09:21:03 CST)" (scheduled at 2019-01-03 09:21:03+08:00)
+Running job "yidian (trigger: cron[hour='9', minute='21', second='3'], next run at: 2019-01-03 09:21:03 CST)" (scheduled at 2019-01-03 09:21:03+08:00)
+Next wakeup is due at 2019-01-04 09:21:03+08:00 (in 86399.998585 seconds)
+Job "jiemian (trigger: cron[hour='9', minute='21', second='3'], next run at: 2019-01-04 09:21:03 CST)" executed successfully
+Job "yidian (trigger: cron[hour='9', minute='21', second='3'], next run at: 2019-01-04 09:21:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-04 00:04:03+08:00 (in 23202.698411 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "ifeng (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "jiemian (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "mop (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "sina (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "souhu (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "tencent (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-04 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Running job "wangyi (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" (scheduled at 2019-01-04 00:04:03+08:00)
+Next wakeup is due at 2019-01-05 00:04:03+08:00 (in 86399.999293 seconds)
+Job "tencent (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "wangyi (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "ifeng (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "sina (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "mop (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "hupu (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully
+Job "souhu (trigger: cron[hour='0', minute='4', second='3'], next run at: 2019-01-05 00:04:03 CST)" executed successfully

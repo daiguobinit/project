@@ -10,6 +10,9 @@ from datetime import timedelta
 import xlrd
 import logging
 import traceback
+import random
+import proxies
+
 
 # 设置日志记录
 LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
@@ -23,6 +26,7 @@ logging.basicConfig(level=logging.DEBUG,
 headle = logging.FileHandler(filename=file_name, encoding='utf-8')
 logger = logging.getLogger()
 logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 class ZhiHuSpider(object):
@@ -65,6 +69,16 @@ class ZhiHuSpider(object):
         # 去重列表
         self.set_list = []
 
+        self.ip = proxies.res_ip()
+
+        self.user_agent = [
+            'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+            'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/536.6',
+            'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.1',
+        ]
+
     # 获取知乎列表页
     def get_questions_list_page(self, url, params, keyword):
         """
@@ -73,17 +87,17 @@ class ZhiHuSpider(object):
         :param params: 参数
         :return:
         """
+
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             # 'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.9',
             'Cache-Control': 'max-age=0',
-            # 'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             # 'referer': 'https://www.zhihu.com/search?q=%E5%AE%9D%E9%A9%AC&range=1w&type=content',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+            'User-Agent': '{}'.format(random.choice(self.user_agent))
         }
-        response = requests.get(url, headers=headers, params=params)
+        response = requests.get(url, headers=headers, params=params, proxies={'http':self.ip})
         print('正在抓取主链接:', response.url)
         print(111, response.content.decode())
         data = response.content.decode()
@@ -91,10 +105,8 @@ class ZhiHuSpider(object):
         if data['data']:  # 判断获取的json数据中的data['data']的value列表是否为空，可以间接判断是否还有下一页数据
             if len(data['data']) > 1:
                 data_list = data['data'][1:]
-                print(222, data_list)
             else:
                 data_list = data['data']
-                print(3333, data_list)
             for news in data_list:
                 question_title = news['highlight']['title'].replace('<em>', '').replace('</em>', '')
                 news_type = news['object']['type']
@@ -188,13 +200,14 @@ class ZhiHuSpider(object):
         headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'accept-language': 'zh-CN,zh;q=0.9',
+            'Connection': 'close',
             'cookie': 'tgw_l7_route=e0a07617c1a38385364125951b19eef8; _xsrf=PhxZhhuALHVLP9dntJMOL27yQZx34zUG',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+            'user-agent': '{}'.format(random.choice(self.user_agent))
         }
         # url = 'https://www.zhihu.com/api/v4/questions/{}/answers?include=data%5B%2A%5D.is_normal%2Cadmin_closed_comment%2Creward_info%2Cis_collapsed%2Cannotation_action%2Cannotation_detail%2Ccollapse_reason%2Cis_sticky%2Ccollapsed_by%2Csuggest_edit%2Ccomment_count%2Ccan_comment%2Ccontent%2Ceditable_content%2Cvoteup_count%2Creshipment_settings%2Ccomment_permission%2Ccreated_time%2Cupdated_time%2Creview_info%2Crelevant_info%2Cquestion%2Cexcerpt%2Crelationship.is_authorized%2Cis_author%2Cvoting%2Cis_thanked%2Cis_nothelp%2Cis_labeled%3Bdata%5B%2A%5D.mark_infos%5B%2A%5D.url%3Bdata%5B%2A%5D.author.follower_count%2Cbadge%5B%2A%5D.topics&limit=20&offset={}&sort_by=created'.format(question_id, offset)
         # print(url)
-        response = requests.get(url, headers=headers)  # , proxies={'http':'49.79.67.253:7671'}
+        response = requests.get(url, headers=headers, proxies={'http':self.ip})  # , proxies={'http':'49.79.67.253:7671'}
         data = json.loads(response.content)
         data_list = data['data']
         for news in data_list:
@@ -267,13 +280,14 @@ class ZhiHuSpider(object):
         headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'accept-language': 'zh-CN,zh;q=0.9',
+            'Connection': 'close',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36'
+            'user-agent': '{}'.format(random.choice(self.user_agent))
         }
         comment_item = {}
         print(url)
         print('爬取评论数据中......')
-        response = requests.get(url, headers=headers)  # , proxies={'http':'49.79.67.253:7671'}
+        response = requests.get(url, headers=headers, proxies={'http':self.ip})  # , proxies={'http':'49.79.67.253:7671'}
         status_code = response.status_code
         if str(status_code) == '200':
             data = json.loads(response.content)
@@ -318,13 +332,13 @@ class ZhiHuSpider(object):
     # 写入json文件
     def write_news_jsonfile(self, item):
         item = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        with open('./../zhihu/zhihu_newsfile_{}.json'.format(str(self.end_time)), 'ab') as f:
+        with open('./../zhihu/47_{}_zhihu.json'.format(str(now_time)), 'ab') as f:
             f.write(item.encode("utf-8"))
         # self.news_jsonfile.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
         item = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        with open('./../zhihu/zhihu_commentfile_{}.json'.format(str(self.end_time)), 'ab') as f:
+        with open('./../zhihu/47_{}_zhihu_commnet.json'.format(str(now_time)), 'ab') as f:
             f.write(item.encode("utf-8"))
         # self.comment_jsonfile.write(item.encode("utf-8"))
 
@@ -340,7 +354,7 @@ class ZhiHuSpider(object):
         cols = cols[1:]
         print(cols)
         for keyword in cols:
-
+            logger.info('爬取关键字:{}'.format(keyword))
             url = 'https://www.zhihu.com/api/v4/search_v3'
             params = {
                 't': 'general',
@@ -356,9 +370,9 @@ class ZhiHuSpider(object):
             try:
                 self.get_questions_list_page(url, params, keyword)
             except Exception as e:
-                logger.error('错误:{}'.format(traceback.format_exc()))
+                logger.error('错误:{}'.format(str(e)))
                 print(e)
-
+        logger.info('爬取完毕......')
 
 if __name__ == "__main__":
     spider = ZhiHuSpider()

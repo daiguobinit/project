@@ -14,11 +14,11 @@ class ChanceItem(scrapy.Item):
     # 网站
     platform = scrapy.Field()
     # 日期
-    data = scrapy.Field()
+    date = scrapy.Field()
     # 时间
     time = scrapy.Field()
     # 作者
-    author = scrapy.Field()
+    source_author = scrapy.Field()
     # 标题
     title = scrapy.Field()
     # 原贴内容
@@ -33,9 +33,7 @@ class ChanceItem(scrapy.Item):
     keyword = scrapy.Field()
     # 评论数
     comments_count = scrapy.Field()
-    # 来源
-    source = scrapy.Field()
     # 点赞
-    like = scrapy.Field()
+    likes = scrapy.Field()
 
 

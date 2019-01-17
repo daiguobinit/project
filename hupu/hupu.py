@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.DEBUG,
 headle = logging.FileHandler(filename=file_name, encoding='utf-8')
 logger = logging.getLogger()
 logger.addHandler(headle)
-
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 class SinaSpider(object):
     """
@@ -63,6 +63,7 @@ class SinaSpider(object):
             'accept-language': 'zh-CN,zh;q=0.9',
             'cookie': 'PHPSESSID=da8474303baac9d465965911aae4c69e; _dacevid3=c6b2c5bd.ab53.710d.1951.0a871bffb6f4; _cnzz_CV30020080=buzi_cookie%7Cc6b2c5bd.ab53.710d.1951.0a871bffb6f4%7C-1; __gads=ID=b57c7251f1ea8930:T=1544583356:S=ALNI_Mbh5oNFJOGikKCFOFsu9ZXWiDcfDQ; _fmdata=LDwCdQHpXdYXGJD3j0882yMyZP5Ivi4MbR2dSu%2FradlbJxKKEt5yIqZNq5noEZHoUwkCLCi1yul3Ntn7n2TqOcKBVtJSJ%2BW0Re4uaC%2Fug8M%3D; _HUPUSSOID=1eb0b12b-e700-478e-b8c4-7d40c4c4b62b; _CLT=b0c2a05996d8b48b354e1fa4ddfc1fef; u=42101303|5ZWm5ZWm5Y2h5Y2h5Y2h5ZWm|7dbb|d72e6b442fce2e4bb3ce5ef39b4990bb|2fce2e4bb3ce5ef3|aHVwdV9iNTkwZGVhNTJiZmEwNTNk; us=8850633673843fdaf6fbda6052428be4782b38fdf9cb1e24a7be78b591ef21b497db3e03f3af039ea75a35cb55547d23bca3d6205193b6b59f81716866d5d8f9; ua=386146240; Hm_lvt_39fc58a7ab8a311f2f6ca4dc1222a96e=1544583357,1544583591,1544584976; Hm_lpvt_39fc58a7ab8a311f2f6ca4dc1222a96e=1544585177; __dacevst=3d855dc7.4e206a33|1544592183554',
             'referer': 'https://bbs.hupu.com/cars-98',
+            'Connection': 'close',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'
         }
@@ -113,6 +114,8 @@ class SinaSpider(object):
         headers = {
             ''
         }
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(url)
         print(url)
         logging.info(u'获取帖子的详细信息url:{}'.format(url))
@@ -172,13 +175,13 @@ class SinaSpider(object):
     # 写入json文件
     def write_news_jsonfile(self, item):
         item = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        with open('./../hupu/hupu_newsfile_{}.json'.format(str(self.end_time)), 'ab') as f:
+        with open('./../hupu/61_{}_hupu.json'.format(str(now_time)), 'ab') as f:
             f.write(item.encode("utf-8"))
         # self.news_jsonfile.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
         item = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        with open('./../hupu/hupu_commentfile_{}.json'.format(str(self.end_time)), 'ab') as f:
+        with open('./../hupu/hupu_commentfile_{}.json'.format(str(now_time)), 'ab') as f:
             f.write(item.encode("utf-8"))
         # self.comment_jsonfile.write(item.encode("utf-8"))
 

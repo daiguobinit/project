@@ -1,0 +1,282 @@
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 11:42:03+08:00 (in 5.329803 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "ifeng (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "jiemian (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "mop (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "sina (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "souhu (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "tencent (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "wangyi (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "yidian (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Running job "zhihu (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-02 11:42:03 CST)" (scheduled at 2019-01-02 11:42:03+08:00)
+Next wakeup is due at 2019-01-03 11:42:03+08:00 (in 86399.988498 seconds)
+Job "yidian (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" executed successfully
+Job "sina (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" executed successfully
+Job "tencent (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" executed successfully
+Job "wangyi (trigger: cron[hour='11', minute='42', second='3'], next run at: 2019-01-03 11:42:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "zhihu" to job store "default"
+Added job "hupu" to job store "default"
+Added job "wangyi" to job store "default"
+Added job "tencent" to job store "default"
+Added job "yidian" to job store "default"
+Added job "ifeng" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Added job "sina" to job store "default"
+Added job "souhu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 14:09:03+08:00 (in 31.300814 seconds)
+Looking for jobs to run
+Running job "hupu (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "ifeng (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "jiemian (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "mop (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "sina (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "souhu (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "tencent (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "wangyi (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-02 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Running job "yidian (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" (scheduled at 2019-01-02 14:09:03+08:00)
+Next wakeup is due at 2019-01-03 14:09:03+08:00 (in 86399.991023 seconds)
+Job "jiemian (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" executed successfully
+Run time of job "zhihu (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" was missed by 0:00:13.466747
+Job "tencent (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" executed successfully
+Job "yidian (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" executed successfully
+Job "wangyi (trigger: cron[hour='14', minute='9', second='3'], next run at: 2019-01-03 14:09:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "mop" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 14:23:03+08:00 (in 52.922005 seconds)
+Looking for jobs to run
+Running job "jiemian (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-02 14:23:03 CST)" (scheduled at 2019-01-02 14:23:03+08:00)
+Running job "mop (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-02 14:23:03 CST)" (scheduled at 2019-01-02 14:23:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-02 14:23:03 CST)" (scheduled at 2019-01-02 14:23:03+08:00)
+Running job "yidian (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-03 14:23:03 CST)" (scheduled at 2019-01-02 14:23:03+08:00)
+Next wakeup is due at 2019-01-03 14:23:03+08:00 (in 86399.990977 seconds)
+Job "yidian (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-03 14:23:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='14', minute='23', second='3'], next run at: 2019-01-03 14:23:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-03 15:01:03+08:00 (in 86386.330788 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "xiaohongshu" to job store "default"
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 15:04:03+08:00 (in 138.828215 seconds)
+Looking for jobs to run
+Running job "jiemian (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-02 15:04:03 CST)" (scheduled at 2019-01-02 15:04:03+08:00)
+Running job "toutiao (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-02 15:04:03 CST)" (scheduled at 2019-01-02 15:04:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-02 15:04:03 CST)" (scheduled at 2019-01-02 15:04:03+08:00)
+Running job "yidian (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-02 15:04:03 CST)" (scheduled at 2019-01-02 15:04:03+08:00)
+Next wakeup is due at 2019-01-03 15:04:03+08:00 (in 86399.998274 seconds)
+Job "toutiao (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-03 15:04:03 CST)" executed successfully
+Job "yidian (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-03 15:04:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='15', minute='4', second='3'], next run at: 2019-01-03 15:04:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 15:07:03+08:00 (in 23.581327 seconds)
+Looking for jobs to run
+Running job "jiemian (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-02 15:07:03 CST)" (scheduled at 2019-01-02 15:07:03+08:00)
+Running job "toutiao (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-02 15:07:03 CST)" (scheduled at 2019-01-02 15:07:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-02 15:07:03 CST)" (scheduled at 2019-01-02 15:07:03+08:00)
+Running job "yidian (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-03 15:07:03 CST)" (scheduled at 2019-01-02 15:07:03+08:00)
+Next wakeup is due at 2019-01-03 15:07:03+08:00 (in 86399.998979 seconds)
+Job "toutiao (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-03 15:07:03 CST)" executed successfully
+Job "yidian (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-03 15:07:03 CST)" executed successfully
+Job "jiemian (trigger: cron[hour='15', minute='7', second='3'], next run at: 2019-01-03 15:07:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 15:12:03+08:00 (in 47.153517 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='15', minute='12', second='3'], next run at: 2019-01-03 15:12:03 CST)" (scheduled at 2019-01-02 15:12:03+08:00)
+Next wakeup is due at 2019-01-03 15:12:03+08:00 (in 86399.998820 seconds)
+Job "toutiao (trigger: cron[hour='15', minute='12', second='3'], next run at: 2019-01-03 15:12:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 15:14:03+08:00 (in 36.120022 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='15', minute='14', second='3'], next run at: 2019-01-02 15:14:03 CST)" (scheduled at 2019-01-02 15:14:03+08:00)
+Next wakeup is due at 2019-01-03 15:14:03+08:00 (in 86399.998956 seconds)
+Job "toutiao (trigger: cron[hour='15', minute='14', second='3'], next run at: 2019-01-03 15:14:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 15:16:03+08:00 (in 33.979036 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='15', minute='16', second='3'], next run at: 2019-01-02 15:16:03 CST)" (scheduled at 2019-01-02 15:16:03+08:00)
+Next wakeup is due at 2019-01-03 15:16:03+08:00 (in 86399.992092 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 16:27:03+08:00 (in 33.640358 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='16', minute='27', second='3'], next run at: 2019-01-02 16:27:03 CST)" (scheduled at 2019-01-02 16:27:03+08:00)
+Next wakeup is due at 2019-01-03 16:27:03+08:00 (in 86399.991434 seconds)
+Job "toutiao (trigger: cron[hour='16', minute='27', second='3'], next run at: 2019-01-03 16:27:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 16:40:03+08:00 (in 46.874502 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='16', minute='40', second='3'], next run at: 2019-01-02 16:40:03 CST)" (scheduled at 2019-01-02 16:40:03+08:00)
+Next wakeup is due at 2019-01-03 15:40:03+08:00 (in 82799.998821 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 16:43:03+08:00 (in 37.753685 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='16', minute='43', second='3'], next run at: 2019-01-02 16:43:03 CST)" (scheduled at 2019-01-02 16:43:03+08:00)
+Next wakeup is due at 2019-01-03 15:43:03+08:00 (in 82799.995525 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 16:44:03+08:00 (in 16.428033 seconds)
+Looking for jobs to run
+Running job "jiemian (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-02 16:44:03 CST)" (scheduled at 2019-01-02 16:44:03+08:00)
+Running job "toutiao (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-02 16:44:03 CST)" (scheduled at 2019-01-02 16:44:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-02 16:44:03 CST)" (scheduled at 2019-01-02 16:44:03+08:00)
+Running job "yidian (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-03 16:44:03 CST)" (scheduled at 2019-01-02 16:44:03+08:00)
+Next wakeup is due at 2019-01-03 16:44:03+08:00 (in 86399.998094 seconds)
+Job "jiemian (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-03 16:44:03 CST)" executed successfully
+Job "yidian (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-03 16:44:03 CST)" executed successfully
+Job "xiaohongshu (trigger: cron[hour='16', minute='44', second='3'], next run at: 2019-01-03 16:44:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-03 16:44:03+08:00 (in 86139.696205 seconds)
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "toutiao" to job store "default"
+Added job "xiaohongshu" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-02 16:49:03+08:00 (in 19.415045 seconds)
+Looking for jobs to run
+Running job "toutiao (trigger: cron[hour='16', minute='49', second='3'], next run at: 2019-01-02 16:49:03 CST)" (scheduled at 2019-01-02 16:49:03+08:00)
+Running job "xiaohongshu (trigger: cron[hour='16', minute='49', second='3'], next run at: 2019-01-02 16:49:03 CST)" (scheduled at 2019-01-02 16:49:03+08:00)
+Next wakeup is due at 2019-01-03 16:49:03+08:00 (in 86399.988934 seconds)
+Job "xiaohongshu (trigger: cron[hour='16', minute='49', second='3'], next run at: 2019-01-03 16:49:03 CST)" executed successfully
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+Adding job tentatively -- it will be properly scheduled when the scheduler starts
+定时任务开启
+Added job "yidian" to job store "default"
+Added job "jiemian" to job store "default"
+Added job "toutiao" to job store "default"
+Scheduler started
+Looking for jobs to run
+Next wakeup is due at 2019-01-03 16:49:03+08:00 (in 84700.544731 seconds)

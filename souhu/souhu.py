@@ -4,7 +4,24 @@ import json
 import re
 import math
 import time
-import ast
+from datetime import datetime
+from datetime import timedelta
+import logging
+import traceback
+
+# 设置日志记录
+LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S '   # 配置输出时间的格式，注意月份和天数不要搞乱了
+file_name = r"./../souhu/souhu-{}.log".format(str(datetime.now()).split(' ')[0])
+logging.basicConfig(level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    datefmt=DATE_FORMAT,
+                    filename=file_name,   # 有了filename参数就不会直接输出显示到控制台，而是直接写入文件
+                    )
+headle = logging.FileHandler(filename=file_name, encoding='utf-8')
+logger = logging.getLogger()
+logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 class SouHuSpider(object):
@@ -20,13 +37,20 @@ class SouHuSpider(object):
         self.start_url = 'http://db.auto.sohu.com/home/'
         # 评论接口模板
         self.commnet_port_url = 'http://apiv2.sohu.com/api/topic/load?callback=jQuery112408588342831604119_1543212932163&page_size=10&topic_source_id=mp_{}&page_no={}&hot_size=5&media_id={}&topic_category_id=18&topic_title=%E5%A4%96%E8%A7%82%E6%94%BB%E5%87%BB%E6%80%A7%E6%9B%B4%E5%BC%BA%E5%AE%9D%E9%A9%AC7%E7%B3%BBM%E8%BF%90%E5%8A%A8%E5%A5%97%E4%BB%B6%E7%89%88%E8%B0%8D%E7%85%A7&topic_url=http%3A%2F%2Fwww.sohu.com%2Fa%2F242124808_430526%3Freferid%3D001cxzs00020004&source_id=mp_{}&_=1543212932164'
-        # 打开json文件
-        self.news_jsonfile = open('./souhu_newsfile.json', 'wb')
-        self.comment_jsonfile = open('./souhu_commentfile.json', 'wb')
-        # 定义开始时间 y-m-d
-        self.start_time = '2018-11-25'
-        # 定义结束时间 y-m-d
-        self.end_time = '2018-11-25'
+        # 通过系统时间自动计算时间间隔
+        date = datetime.now() - timedelta(days=3)  # 七天前的时间，不包括今天
+        str_time = str(date).split(' ')[0]
+
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+
+        now_time = str(yesterday).split(' ')[0]
+        print('爬取时间段：{}到{}'.format(str_time, now_time))
+
+        logging.info('爬取时间段：{}到{}'.format(str_time, now_time))
+        # 定义开始时间 y-m-d  离现在时间远
+        self.start_time = str_time
+        # 定义结束时间 y-m-d  离现在时间近
+        self.end_time = now_time
         # 标记爬虫工作
         self.is_work = True
         # 评论页数
@@ -36,6 +60,8 @@ class SouHuSpider(object):
 
     # 获取所有的车系连接
     def get_all_carts_category(self, url):
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(url)
         data = etree.HTML(response.content.decode())
         url_list = data.xpath('.//ul[@class="tree_con"]/li/a[@class="model-a"]/@href')
@@ -47,7 +73,7 @@ class SouHuSpider(object):
     # 获取车系详情页
     def get_carts_page_info(self, url, page_id='1'):
         text = '/news_{}/page_1.html'
-        url = 'http:' + url + text.format(page_id)
+        url = url + text.format(page_id)
         # http://db.auto.sohu.com/yiqiaudi/4414/news_1/page_1.html
         print(url)
         response = requests.get(url)
@@ -90,6 +116,8 @@ class SouHuSpider(object):
     def get_news_page_info(self, url, source):
         item = {}
         url = 'http:' + url
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(url)
         data = etree.HTML(response.content.decode())
         item['platform'] = '搜狐新闻'
@@ -109,6 +137,7 @@ class SouHuSpider(object):
         views = data.xpath('.//div[@class="l read-num"]/text()')[0]
         views = views.split('(')[1].split(')')[0]
         item['clicks'] = views
+        item['views'] = ''
         item['url'] = url
         source_id = url.split('/')[-1].split('_')[0]
         media_id = url.split('/')[-1].split('_')[1]
@@ -126,6 +155,8 @@ class SouHuSpider(object):
         # 构建url
         url = self.commnet_port_url.format(source_id, page_id, media_id, source_id)
         print(url)
+        s = requests.session()
+        s.keep_alive = False
         response = requests.get(url)
         data = response.content.decode()
         data = data[42:][:-2]
@@ -169,21 +200,23 @@ class SouHuSpider(object):
 
     # 写入json文件
     def write_news_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.news_jsonfile.write(item.encode("utf-8"))
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../souhu/16_{}_souhu_news.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.comment_jsonfile.write(item.encode("utf-8"))
-
-    def close_file(self):
-        self.news_jsonfile.close()
-        self.comment_jsonfile.close()
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../souhu/30_{}_souhu_commnet.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
     def run(self):
-        self.get_all_carts_category(self.start_url)
-        # 关闭文件
-        self.close_file()
+        # self.get_all_carts_category(self.start_url)
+        # logger.info('爬取完毕......')
+        for url in open('./../souhu/carts.txt'):
+            url = url.strip()
+            for i in range(1, 7):
+                self.get_carts_page_info(url, page_id=str(i))
+        logger.info('爬取完毕......')
 
 
 if __name__ == "__main__":

@@ -6,11 +6,12 @@ import math
 import time
 import ast
 import xlrd
+from datetime import datetime, date, timedelta
 
 
 class AiKaSpider(object):
     """
-    这是一个爬虫模板
+    爱卡汽车配置
     """
     def __init__(self):
 
@@ -63,8 +64,8 @@ class AiKaSpider(object):
                 for tr in table:  # 从表中获取子节点， 可以看做是一行行的获取数据
                     name = tr.xpath('.//td[1]//text()')
                     name = ''.join(name).strip().replace('：', '')
-                    if name == '本地最低报价':
-                        name = '最低报价'
+                    # if name == '本地报价':
+                    #     glo_name = '本地报价'
                     for i in id_list:
                         item_dict = dict_list[i.split('_')[1]]
                         text = tr.xpath('.//td[@ci="{}"]//text()'.format(str(id_list.index(i)+1)))  # 从一行的的数据再获取子数据，进行分类
@@ -83,12 +84,12 @@ class AiKaSpider(object):
                 for price in price_list:
                     try:
                         prc_id = price['mid']
-                        dict_list[prc_id]['最低报价'] = price['min_price']
+                        dict_list[prc_id]['本地报价'] = price['min_price']
                     except:
                         pass
             except Exception as e:
                 print(e)
-                print('无最低报价')
+                print('无本地报价')
 
             for key in dict_list:
                 value = dict_list[key]
@@ -98,7 +99,7 @@ class AiKaSpider(object):
     # 写入json文件
     def write_news_jsonfile(self, item):
         item = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        with open('./AiKa_newsfile.json', 'ab') as f:
+        with open('./M12_xcar_config_{}.json'.format(str(datetime.now()).split(' ')[0].replace('-', '')), 'ab') as f:
             f.write(item.encode("utf-8"))
         # self.news_jsonfile.write(item.encode("utf-8"))
 

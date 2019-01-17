@@ -2,9 +2,26 @@ import requests
 from lxml import etree
 import json
 import re
-import math
 import time
-import ast
+from datetime import datetime
+from datetime import timedelta
+import xlrd
+import logging
+import traceback
+
+# 设置日志记录
+LOG_FORMAT = "%(asctime)s %(filename)s %(levelname)s %(lineno)d %(message)s "  # 配置输出日志格式
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S '   # 配置输出时间的格式，注意月份和天数不要搞乱了
+file_name = r"./../sina/sina-{}.log".format(str(datetime.now()).split(' ')[0])
+logging.basicConfig(level=logging.DEBUG,
+                    format=LOG_FORMAT,
+                    datefmt=DATE_FORMAT,
+                    filename=file_name,   # 有了filename参数就不会直接输出显示到控制台，而是直接写入文件
+                    )
+headle = logging.FileHandler(filename=file_name, encoding='utf-8')
+logger = logging.getLogger()
+logger.addHandler(headle)
+now_time = str(datetime.now()).split(' ')[0].replace('-', '_')
 
 
 class SinaSpider(object):
@@ -15,9 +32,9 @@ class SinaSpider(object):
             'Accept-Encoding':'gzip, deflate, sdch',
             'Accept-Language':'zh-CN,zh;q=0.8',
             'Cache-Control':'max-age=0',
-            'Connection':'keep-alive',
             'Cookie':'lxlrttp=1541383354; SUB=_2AkMsr_iof8NxqwJRmfkQzmLlaop3wg3EieKa8wlzJRMyHRl-yD8Xqk4YtRB6By_WR3ecEuiI3NBWzuzCv5vtVnmGKtsn; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFVyZLoounDZRKve7mPA8Ho',
             'Host':'auto.sina.com.cn',
+            'Connection': 'close',
             'Referer':'http://auto.sina.com.cn/newcar/?page=1',
             'Upgrade-Insecure-Requests':'1',
             'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36'
@@ -26,17 +43,22 @@ class SinaSpider(object):
         self.start_url = 'http://auto.sina.com.cn/newcar/?page={}'
         # 评论接口模板
         self.commnet_port_url = 'http://comment.sina.com.cn/page/info?version=1&format=json&channel=qc&newsid=comos-{}&group=undefined&compress=0&ie=utf-8&oe=utf-8&page={}&page_size=10&t_size=3&h_size=3&thread=1&callback=jsonp_1542676393124&_=1542676393124'
-        # 打开json文件
-        self.news_jsonfile = open('./sina_newsfile.json', 'wb')
-        self.comment_jsonfile = open('./sina_commentfile.json', 'wb')
         # 评论页数
         self.page_num = 1
         # 新闻接口url模板78593
         self.news_url_port = 'http://interface.sina.cn/auto/inner/getAutoSubpageInfo.d.json?cid={}&pageSize=15&page={}&callback=jQuery172017229859039201645_1542683078100&_=1542683078171'
-        # 定义开始时间 y-m-d
-        self.start_time = '2018-11-13'
-        # 定义结束时间 y-m-d
-        self.end_time = '2018-11-20'
+        date = datetime.now() - timedelta(days=3)
+        news_start_time = str(date).split(' ')[0]
+        yesterday = datetime.now() - timedelta(days=1)  # 昨天时间
+        yesterday = str(yesterday).split(' ')[0]
+        print('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+        logging.info('爬取时间段：{}到{}'.format(news_start_time, yesterday))
+
+        # 定义开始时间 y-m-d  离现在时间远  news_start_time
+        self.start_time = news_start_time
+        # 定义结束时间 y-m-d  离现在时间近  yesterday
+        self.end_time = yesterday
         # 标记爬虫工作
         self.is_work = True
 
@@ -98,8 +120,11 @@ class SinaSpider(object):
 
             # 从接口处获取评论数
             news_id = re.search('(\w{7}\d{7})', url).group(0)
-            comment_count = self.get_commnet_count(news_id)
-            item['commnets_count'] = comment_count
+            try:
+                comment_count = self.get_commnet_count(news_id)
+            except AttributeError:
+                comment_count = '0'
+            item['comments_count'] = comment_count
             item['clicks'] = ''
             item['views'] = ''
             item['likes'] = ''
@@ -142,6 +167,7 @@ class SinaSpider(object):
     def get_commnet_count(self, news_id):
         response = requests.get(self.commnet_port_url.format(news_id, str(1)))
         data = response.content.decode()
+        print(data)
         data = re.search('"qreply": \d{0,9}', data).group(0)
         comment_count = data.split(':')[1]
         return comment_count
@@ -179,7 +205,7 @@ class SinaSpider(object):
                 comment_url = 'http://comment5.news.sina.com.cn/comment/skin/default.html?channel=qc&newsid=comos-{}&group=0'.format(news_id)
                 item['comment_url'] = comment_url
                 item['views'] = ''
-                item['commnets_count'] = ''
+                item['comments_count'] = ''
                 likes = comment['agree']
                 item['likes'] = likes
                 self.write_comment_jsonfile(item)
@@ -255,30 +281,28 @@ class SinaSpider(object):
                 else:
                     start_time = time.mktime(time.strptime('2010-1-1', "%Y-%m-%d"))
                 if float(get_news_time) < float(start_time):
-                    self.is_work = False
+                    # self.is_work = False
                     return
 
                 if float(start_time) <= float(get_news_time) <= float(end_time):
-
+                    print('写入数据中......')
                     self.write_news_jsonfile(item)
             except:
                 print('网页获取错误')
 
     # ------------------------------------------------------------------------------------------------------------------
     def write_news_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.news_jsonfile.write(item.encode("utf-8"))
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../sina/17_{}_sina_news.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
     def write_comment_jsonfile(self, item):
-        item = json.dumps(dict(item), ensure_ascii=False) + ',\n'
-        self.comment_jsonfile.write(item.encode("utf-8"))
-
-    def close_file(self):
-        self.news_jsonfile.close()
-        self.comment_jsonfile.close()
+        item = json.dumps(dict(item), ensure_ascii=False) + '\n'
+        with open('./../sina/31_{}_sina_comment.json'.format(str(now_time)), 'ab') as f:
+            f.write(item.encode("utf-8"))
 
     def run(self):
-        # # 新车模块
+        # 新车模块
         for num in range(1, 35):
             if self.is_work:
                 url = self.news_url_port.format('78593', str(num))
@@ -286,54 +310,58 @@ class SinaSpider(object):
                 self.get_news_url(url)
             else:
                 break
-        # self.is_work = True
-        # # 试车模块
-        # for num in range(1, 35):
-        #     if self.is_work:
-        #         url = self.news_url_port.format('78603', str(num))
-        #         print(url, '新闻列表页')
-        #         self.get_news_url(url)
-        #     else:
-        #         break
-        # self.is_work = True
-        # # 导购模块
-        # for num in range(1, 35):
-        #     if self.is_work:
-        #         url = self.news_url_port.format('78584', str(num))
-        #         print(url, '新闻列表页')
-        #         self.get_news_url(url)
-        #     else:
-        #         break
-        # self.is_work = True
-        # # 新闻模块
-        # for num in range(1, 35):
-        #     if self.is_work:
-        #         url = self.news_url_port.format('78590', str(num))
-        #         print(url, '新闻列表页')
-        #         self.get_news_url(url)
-        #     else:
-        #         break
-        # self.is_work = True
-        # # 技术模块
-        # for num in range(1, 14):
-        #     if self.is_work:
-        #         url = self.news_url_port.format('78580', str(num))
-        #         print(url, '新闻列表页')
-        #         self.get_news_url(url)
-        #     else:
-        #         break
+        self.is_work = True
+        # 试车模块
+        for num in range(1, 35):
+            if self.is_work:
+                url = self.news_url_port.format('78603', str(num))
+                print(url, '新闻列表页')
+                self.get_news_url(url)
+            else:
+                break
+        self.is_work = True
+        # 导购模块
+        for num in range(1, 35):
+            if self.is_work:
+                url = self.news_url_port.format('78584', str(num))
+                print(url, '新闻列表页')
+                self.get_news_url(url)
+            else:
+                break
+        self.is_work = True
+        # 新闻模块
+        for num in range(1, 35):
+            if self.is_work:
+                url = self.news_url_port.format('78590', str(num))
+                print(url, '新闻列表页')
+                self.get_news_url(url)
+            else:
+                break
+        self.is_work = True
+        # 技术模块
+        for num in range(1, 14):
+            if self.is_work:
+                url = self.news_url_port.format('78580', str(num))
+                print(url, '新闻列表页')
+                self.get_news_url(url)
+            else:
+                break
 
-        # self.is_work = True
+        self.is_work = True
         # 新能源模块 150
-        # for num in range(65, 150):
-        #     if self.is_work:
-        #         url = self.energy_url.format(str(num))
-        #         print(url)
-        #         self.get_energy_url(url)
-        #     else:
-        #         break
+        for num in range(1, 200):
+            if self.is_work:
+                url = self.energy_url.format(str(num))
+                print(url, '新闻列表页')
+                self.get_energy_url(url)
+            else:
+                break
+        logger.info('爬取完毕......')
 
 
 if __name__ == "__main__":
     sina = SinaSpider()
-    sina.run()
+    try:
+        sina.run()
+    except:
+        logger.error(traceback.format_exc())
